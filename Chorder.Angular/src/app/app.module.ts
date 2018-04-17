@@ -8,6 +8,8 @@ import { LineComponent } from './line/line.component';
 import { PartComponent } from './part/part.component';
 import { SongComponent } from './song/song.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { SongComponent } from './song/song.component';
     SongComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule
   ],
   providers: [],
