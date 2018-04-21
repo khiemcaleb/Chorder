@@ -1,11 +1,15 @@
 .cell {
     float: left;
     margin-right: 5px;
-    border: gray;
+    height: 100%;
 }
 
 .cell.edit-mode {
     min-width: 50px;
+}
+
+.cell.read-mode {
+    min-width: 0;
 }
 
 .chord {

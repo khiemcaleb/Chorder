@@ -10,7 +10,7 @@ export class CellComponent implements OnInit {
   @Input() cell: Cell;
 
   toggle: boolean = false;
-  mode: SongMode = SongMode.EDIT; // this to be inherited
+  mode: SongMode = SongMode.READ; // this to be inherited
 
 
   constructor() { 
