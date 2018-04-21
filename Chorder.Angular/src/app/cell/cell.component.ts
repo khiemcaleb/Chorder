@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SongMode } from '../song/song';
 
 @Component({
   selector: 'app-cell',
@@ -6,6 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent implements OnInit {
+  @Input() cell: Cell;
+
+  toggle: boolean = false;
+  mode: SongMode = SongMode.EDIT; // this to be inherited
+
 
   constructor() { 
   }
@@ -13,8 +19,10 @@ export class CellComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Input() cell: Cell;
-
+  switchMode(){
+    if (this.mode == SongMode.EDIT)
+      this.toggle = !this.toggle;
+  }
 }
 
 export class Cell {

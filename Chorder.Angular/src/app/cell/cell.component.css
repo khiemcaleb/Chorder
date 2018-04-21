@@ -1,8 +1,18 @@
-:host {
+.cell {
     float: left;
     margin-right: 5px;
+    border: gray;
 }
+
+.cell.edit-mode {
+    min-width: 50px;
+}
+
 .chord {
     font-weight: bold;
     text-align: center;
+}
+
+.chord > input {
+    width: 50px;
 }

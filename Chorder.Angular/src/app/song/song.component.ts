@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Part } from '../part/part.component';
-import { Line } from '../line/line.component';
+import { SongsService } from './songs.service';
 
 @Component({
   selector: 'app-song',
@@ -8,33 +7,13 @@ import { Line } from '../line/line.component';
   styleUrls: ['./song.component.css']
 })
 export class SongComponent implements OnInit {
+  song;
 
-  constructor() { }
+  constructor(songService: SongsService) {
+    this.song = songService.getSongById();
+  }
 
   ngOnInit() {
   }
-
-  title: String = 'This is the day';
-  parts: Part[] =
-  [
-    {
-      name: "Verse",
-      lines: [
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]},
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]},
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]},
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]}
-      ] 
-    },
-    {
-      name: "Chorus",
-      lines: [
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]},
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]},
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]},
-        {cells: [{chord: "CMaj7", word: "God"}, {chord: "", word: " "}, {chord: "G", word: "loves"}, {chord: "Am", word: ""}, {chord: "CMaj7", word: "you"}]}
-      ] 
-    }
-  ]
 
 }
