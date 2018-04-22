@@ -7,10 +7,10 @@ import { SongMode } from '../song/song';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent implements OnInit {
-  @Input() cell: Cell;
+  @Input('cell') cell: Cell;
+  @Input('mode') mode: SongMode;
 
   toggle: boolean = false;
-  mode: SongMode = SongMode.READ; // this to be inherited
 
 
   constructor() { 

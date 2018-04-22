@@ -1,3 +1,4 @@
+import { SongMode } from './../song/song';
 import { Component, OnInit, Input } from '@angular/core';
 import { Cell } from '../cell/cell.component';
 
@@ -14,8 +15,7 @@ export class LineComponent implements OnInit {
   }
 
   @Input() line: Line;
-  
-
+  SongMode = SongMode;
 }
 
 export class Line {
