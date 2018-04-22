@@ -16,4 +16,8 @@ export class SongComponent implements OnInit {
   ngOnInit() {
   }
 
+  songToString(){
+    return JSON.stringify(this.song);
+  }
+
 }

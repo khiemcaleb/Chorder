@@ -1,2 +1,4 @@
 <h2>{{song.title}}</h2>
 <app-part *ngFor="let part of song.parts" [part]="part"></app-part>
+
+<div>{{songToString()}}</div>

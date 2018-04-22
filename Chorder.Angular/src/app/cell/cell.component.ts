@@ -12,11 +12,14 @@ export class CellComponent {
 
   toggle: boolean = false;
 
-  switchMode($event){
+  switchMode($event = null){
+    console.log("Fired: "+ this.toggle);
+    console.log($event);
+
     if (this.mode == SongMode.EDIT)
       this.toggle = !this.toggle;
 
-      $event.stopPropagation();
+      if ($event) $event.stopPropagation();
   }
 }
 
