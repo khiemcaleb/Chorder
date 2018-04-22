@@ -1,7 +1,12 @@
 <div class="cell {{mode}}" (click)="switchMode()" >
   <div class="chord">
     <span *ngIf="!toggle">{{cell.chord}}</span>
-    <input *ngIf="toggle" (keyup.enter)="switchMode()" (click)="$event.stopPropagation();" [(ngModel)]="cell.chord" appInputSelectAll>
+    <input 
+      *ngIf="toggle" 
+      (keyup.enter)="switchMode()" 
+      (click)="$event.stopPropagation();" 
+      [(ngModel)]="cell.chord" appInputSelectAll
+      (focusout)="switchMode($event);">
   </div>
-  <div class="word">{{cell.word}}</div>
+  <div class="word {{mode}}">{{cell.word}}</div>
 </div>

@@ -6,15 +6,8 @@ import { Line } from '../line/line.component';
   templateUrl: './part.component.html',
   styleUrls: ['./part.component.css']
 })
-export class PartComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class PartComponent {
   @Input() part: Part;
-  
   
 }
 

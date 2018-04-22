@@ -6,22 +6,17 @@ import { SongMode } from '../song/song';
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.css']
 })
-export class CellComponent implements OnInit {
+export class CellComponent {
   @Input('cell') cell: Cell;
   @Input('mode') mode: SongMode;
 
   toggle: boolean = false;
 
-
-  constructor() { 
-  }
-
-  ngOnInit() {
-  }
-
-  switchMode(){
+  switchMode($event){
     if (this.mode == SongMode.EDIT)
       this.toggle = !this.toggle;
+
+      $event.stopPropagation();
   }
 }
 

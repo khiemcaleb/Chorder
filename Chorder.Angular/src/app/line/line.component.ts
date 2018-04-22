@@ -7,12 +7,7 @@ import { Cell } from '../cell/cell.component';
   templateUrl: './line.component.html',
   styleUrls: ['./line.component.css']
 })
-export class LineComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class LineComponent {
 
   @Input() line: Line;
   SongMode = SongMode;

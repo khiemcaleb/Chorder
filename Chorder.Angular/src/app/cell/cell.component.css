@@ -7,16 +7,19 @@
 .cell.edit-mode {
     min-width: 50px;
 }
+.cell.edit-mode:hover {
+    background-color:lightgray;
+}
 
 .cell.read-mode {
     min-width: 0;
 }
 
-.chord {
+.cell .chord {
     font-weight: bold;
     text-align: center;
 }
 
-.chord > input {
+.cell > .chord > input {
     width: 50px;
 }
