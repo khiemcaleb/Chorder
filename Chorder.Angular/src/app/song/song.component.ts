@@ -19,5 +19,4 @@ export class SongComponent implements OnInit {
   songToString(){
     return JSON.stringify(this.song);
   }
-
 }

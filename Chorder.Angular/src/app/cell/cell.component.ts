@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SongMode } from '../song/song';
 
 @Component({
@@ -10,36 +10,37 @@ export class CellComponent {
   @Input('cell') cell: Cell;
   @Input('mode') mode: SongMode;
 
+  @Output() tab = new EventEmitter();
+
   isEditing: boolean = false; // true = edit, false = read
 
-  switchMode($event = null) {
-    console.log("Fired: " + this.isEditing);
-    console.log($event);
-
-    if (this.mode == SongMode.EDIT)
-      this.isEditing = !this.isEditing;
-
-    if ($event) $event.stopImmediatePropagation();
-  }
-
   onCellClick($event) {
+    console.log('onCellClick');
     if (!this.isEditing)
       this.isEditing = true;
   }
 
   onChordEnter($event) {
+    console.log('onChordEnter');
     if (this.isEditing)
       this.isEditing = false;
   }
 
   onChordClick($event) {
+    console.log('onChordClick');
     $event.stopImmediatePropagation();
   }
 
   onChordBlur($event) {
+    console.log('onChordBlur');
     if (this.isEditing)
       this.isEditing = false;
-  };
+  }
+
+  onChordTab($event){
+    console.log('onChordTab');
+    this.tab.emit($event);
+  }
 }
 
 export class Cell {

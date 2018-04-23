@@ -2,7 +2,8 @@
   <div class="chord">
     <span *ngIf="!isEditing">{{cell.chord}}</span>
     <input *ngIf="isEditing" 
-      (keyup.enter)="onChordEnter($event);" 
+      (keyup.enter)="onChordEnter($event)" 
+      (keydown.tab)="onChordTab($event)"
       (click)="onChordClick($event)" 
       [(ngModel)]="cell.chord" 
       appInputSelectAll
