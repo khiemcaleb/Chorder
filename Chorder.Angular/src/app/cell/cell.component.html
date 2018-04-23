@@ -1,11 +1,12 @@
-<div class="cell {{mode}}" (click)="switchMode($event)" >
+<div class="cell {{mode}}" (click)="onCellClick($event)" >
   <div class="chord">
-    <span *ngIf="!toggle">{{cell.chord}}</span>
-    <input *ngIf="toggle" 
-      (keyup.enter)="switchMode($event)" 
-      (click)="$event.stopPropagation();" 
-      [(ngModel)]="cell.chord" appInputSelectAll
-      (focusout)="switchMode($event);">
+    <span *ngIf="!isEditing">{{cell.chord}}</span>
+    <input *ngIf="isEditing" 
+      (keyup.enter)="onChordEnter($event);" 
+      (click)="onChordClick($event)" 
+      [(ngModel)]="cell.chord" 
+      appInputSelectAll
+      (blur)="onChordBlur($event);">
   </div>
   <div class="word {{mode}}">{{cell.word}}</div>
 </div>

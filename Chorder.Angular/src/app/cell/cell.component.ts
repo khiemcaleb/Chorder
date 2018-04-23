@@ -10,17 +10,36 @@ export class CellComponent {
   @Input('cell') cell: Cell;
   @Input('mode') mode: SongMode;
 
-  toggle: boolean = false;
+  isEditing: boolean = false; // true = edit, false = read
 
-  switchMode($event = null){
-    console.log("Fired: "+ this.toggle);
+  switchMode($event = null) {
+    console.log("Fired: " + this.isEditing);
     console.log($event);
 
     if (this.mode == SongMode.EDIT)
-      this.toggle = !this.toggle;
+      this.isEditing = !this.isEditing;
 
-      if ($event) $event.stopPropagation();
+    if ($event) $event.stopImmediatePropagation();
   }
+
+  onCellClick($event) {
+    if (!this.isEditing)
+      this.isEditing = true;
+  }
+
+  onChordEnter($event) {
+    if (this.isEditing)
+      this.isEditing = false;
+  }
+
+  onChordClick($event) {
+    $event.stopImmediatePropagation();
+  }
+
+  onChordBlur($event) {
+    if (this.isEditing)
+      this.isEditing = false;
+  };
 }
 
 export class Cell {
