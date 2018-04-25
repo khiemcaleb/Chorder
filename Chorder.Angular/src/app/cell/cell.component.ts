@@ -15,31 +15,37 @@ export class CellComponent {
   isEditing: boolean = false; // true = edit, false = read
 
   onCellClick($event) {
-    console.log('onCellClick');
+    console.log("onCellClick");
     if (!this.isEditing)
       this.isEditing = true;
   }
 
   onChordEnter($event) {
-    console.log('onChordEnter');
+    console.log("onChordEnter");
     if (this.isEditing)
       this.isEditing = false;
   }
 
   onChordClick($event) {
-    console.log('onChordClick');
+    console.log("onChordClick");
     $event.stopImmediatePropagation();
   }
 
   onChordBlur($event) {
-    console.log('onChordBlur');
+    console.log("onChordBlur");
     if (this.isEditing)
       this.isEditing = false;
   }
 
-  onChordTab($event){
-    console.log('onChordTab');
-    this.tab.emit($event);
+  onChordTab(){
+    console.log("onChordTab");
+    this.tab.emit(this.cell);
+  }
+
+  onChordChange(){
+    console.log("onChordChange");
+    // not know what to do with this yet
+    // two way binding is handling data
   }
 }
 
