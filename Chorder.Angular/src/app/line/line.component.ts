@@ -10,15 +10,18 @@ import { Cell } from '../cell/cell.component';
 })
 export class LineComponent {
 
-  @ViewChildren(CellComponent) cells: QueryList<CellComponent>;
+  @ViewChildren(CellComponent) cellCmps: QueryList<CellComponent>;
 
   @Input() line: Line;
   SongMode = SongMode;
 
-  onCellTab($event){
-    console.log($event);
-
-    console.log(this.cells);
+  onCellTab(cellCmp: CellComponent) {
+    if (cellCmp.index < this.cellCmps.length - 1) {
+      var nextCellCmp: CellComponent = this.cellCmps.toArray()[cellCmp.index + 1];
+      setTimeout(() => { nextCellCmp.focus(); });
+    } else {
+      // next line
+    }
   }
 }
 

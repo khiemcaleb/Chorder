@@ -7,9 +7,10 @@
       (keydown.tab)="onChordTab()" 
       (click)="onChordClick($event)"
       [(ngModel)]="cell.chord" 
-      appInputSelectAll 
-      (blur)="onChordBlur($event);"
-      (change)="onChordChange();" >
+      appInputSelectAll
+      (blur)="onChordBlur()"
+      (change)="onChordChange()"
+      >
     </ng-template>
 
     <ng-template #chordReader>

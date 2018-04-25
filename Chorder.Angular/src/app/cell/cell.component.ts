@@ -7,8 +7,10 @@ import { SongMode } from '../song/song';
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent {
+
   @Input('cell') cell: Cell;
   @Input('mode') mode: SongMode;
+  @Input('index') index: number;
 
   @Output() tab = new EventEmitter();
 
@@ -37,15 +39,19 @@ export class CellComponent {
       this.isEditing = false;
   }
 
-  onChordTab(){
+  onChordTab() {
     console.log("onChordTab");
-    this.tab.emit(this.cell);
+    this.tab.emit(this);
   }
 
-  onChordChange(){
+  onChordChange() {
     console.log("onChordChange");
     // not know what to do with this yet
     // two way binding is handling data
+  }
+
+  focus() {
+    // focus myself
   }
 }
 
