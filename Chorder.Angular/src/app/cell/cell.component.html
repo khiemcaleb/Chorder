@@ -1,13 +1,15 @@
-<div class="cell {{mode}}" (click)="onCellClick($event)" >
+<div class="cell {{mode}}" (click)="onCellClick($event)">
   <div class="chord">
-    <span *ngIf="!isEditing">{{cell.chord}}</span>
-    <input *ngIf="isEditing" 
-      (keyup.enter)="onChordEnter($event)" 
-      (keydown.tab)="onChordTab($event)"
-      (click)="onChordClick($event)" 
-      [(ngModel)]="cell.chord" 
-      appInputSelectAll
-      (blur)="onChordBlur($event);">
+    <div *ngIf="isEditing; then chordEditor else chordReader"></div>
+    <ng-template #chordEditor>
+      <input *ngIf="isEditing" (keyup.enter)="onChordEnter($event)" (keydown.tab)="onChordTab($event)" (click)="onChordClick($event)"
+        [(ngModel)]="cell.chord" appInputSelectAll (blur)="onChordBlur($event);">
+    </ng-template>
+
+    <ng-template #chordReader>
+      <span *ngIf="!isEditing">{{cell.chord}}</span>
+    </ng-template>
   </div>
+
   <div class="word {{mode}}">{{cell.word}}</div>
 </div>
