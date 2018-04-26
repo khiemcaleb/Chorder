@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { SongMode } from '../song/song';
 
 @Component({
@@ -14,12 +14,17 @@ export class CellComponent {
 
   @Output() tab = new EventEmitter();
 
-  isEditing: boolean = false; // true = edit, false = read
+  isEditing: boolean = false;
+
+  @ViewChild("chordInput") chordInput: ElementRef;
+
 
   onCellClick($event) {
     console.log("onCellClick");
-    if (!this.isEditing)
+    if (!this.isEditing){
       this.isEditing = true;
+      // need focus here
+    }
   }
 
   onChordEnter($event) {
@@ -33,7 +38,7 @@ export class CellComponent {
     $event.stopImmediatePropagation();
   }
 
-  onChordBlur($event) {
+  onChordBlur() {
     console.log("onChordBlur");
     if (this.isEditing)
       this.isEditing = false;
@@ -42,6 +47,7 @@ export class CellComponent {
   onChordTab() {
     console.log("onChordTab");
     this.tab.emit(this);
+   
   }
 
   onChordChange() {
@@ -51,7 +57,9 @@ export class CellComponent {
   }
 
   focus() {
-    // focus myself
+    console.log("focus");
+    if (!this.isEditing)
+      this.isEditing = true;
   }
 }
 

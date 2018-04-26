@@ -18,7 +18,7 @@ export class LineComponent {
   onCellTab(cellCmp: CellComponent) {
     if (cellCmp.index < this.cellCmps.length - 1) {
       var nextCellCmp: CellComponent = this.cellCmps.toArray()[cellCmp.index + 1];
-      setTimeout(() => { nextCellCmp.focus(); });
+      nextCellCmp.isEditing = true;
     } else {
       // next line
     }

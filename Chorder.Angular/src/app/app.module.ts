@@ -8,7 +8,6 @@ import { CellComponent } from './cell/cell.component';
 import { LineComponent } from './line/line.component';
 import { PartComponent } from './part/part.component';
 import { SongComponent } from './song/song.component';
-import { InputSelectAllDirective } from './cell/input-select-all.directive';
 
 
 @NgModule({
@@ -17,8 +16,7 @@ import { InputSelectAllDirective } from './cell/input-select-all.directive';
     CellComponent,
     LineComponent,
     PartComponent,
-    SongComponent,
-    InputSelectAllDirective
+    SongComponent
   ],
   imports: [
     BrowserModule,

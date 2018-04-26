@@ -3,13 +3,10 @@
     <div *ngIf="isEditing; then chordEditor else chordReader"></div>
     <ng-template #chordEditor>
       <input *ngIf="isEditing" 
-      (keyup.enter)="onChordEnter($event)" 
+      [(ngModel)]="cell.chord"
+      (focusout)="onChordBlur()"
       (keydown.tab)="onChordTab()" 
-      (click)="onChordClick($event)"
-      [(ngModel)]="cell.chord" 
-      appInputSelectAll
-      (blur)="onChordBlur()"
-      (change)="onChordChange()"
+      #chordInput
       >
     </ng-template>
 
