@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SongMode } from '../song/song';
 
 @Component({
@@ -15,51 +15,29 @@ export class CellComponent {
   @Output() tab = new EventEmitter();
 
   isEditing: boolean = false;
-
-  @ViewChild("chordInput") chordInput: ElementRef;
-
+  isFocus: boolean = true;
 
   onCellClick($event) {
-    console.log("onCellClick");
-    if (!this.isEditing){
+    if (!this.isEditing) {
       this.isEditing = true;
-      // need focus here
     }
   }
 
   onChordEnter($event) {
-    console.log("onChordEnter");
     if (this.isEditing)
       this.isEditing = false;
-  }
-
-  onChordClick($event) {
-    console.log("onChordClick");
-    $event.stopImmediatePropagation();
   }
 
   onChordBlur() {
-    console.log("onChordBlur");
     if (this.isEditing)
       this.isEditing = false;
+
+    if (!this.isFocus)
+      this.isFocus = true;
   }
 
   onChordTab() {
-    console.log("onChordTab");
     this.tab.emit(this);
-   
-  }
-
-  onChordChange() {
-    console.log("onChordChange");
-    // not know what to do with this yet
-    // two way binding is handling data
-  }
-
-  focus() {
-    console.log("focus");
-    if (!this.isEditing)
-      this.isEditing = true;
   }
 }
 

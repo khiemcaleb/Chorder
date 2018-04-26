@@ -6,8 +6,7 @@
       [(ngModel)]="cell.chord"
       (focusout)="onChordBlur()"
       (keydown.tab)="onChordTab()" 
-      #chordInput
-      >
+      [appFocus]="isFocus">
     </ng-template>
 
     <ng-template #chordReader>

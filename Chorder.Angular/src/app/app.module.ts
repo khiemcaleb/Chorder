@@ -8,6 +8,7 @@ import { CellComponent } from './cell/cell.component';
 import { LineComponent } from './line/line.component';
 import { PartComponent } from './part/part.component';
 import { SongComponent } from './song/song.component';
+import { FocusDirective } from './focus.directive';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SongComponent } from './song/song.component';
     CellComponent,
     LineComponent,
     PartComponent,
-    SongComponent
+    SongComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,
