@@ -12,15 +12,27 @@ export class PartComponent {
   @Input() displayMode: DisplayMode;
   @Input() isReadOnly: boolean;  
 
+  isEditing: boolean = false;
+  isFocus: boolean = true;
   DisplayMode: typeof DisplayMode = DisplayMode;
+
+  onLyricsClick(){
+    if (!this.isReadOnly && !this.isEditing)
+      this.isEditing = true;
+  }
+
+  onLyricsBlur(){
+    if (this.isEditing)
+      this.isEditing = false;
+
+    if (!this.isFocus)
+      this.isFocus = true;
+  }
+
 }
 
 export class Part {
   name: string;
   lines: Line[];
   lyrics: string;
-}
-
-export enum PartMode {
-
 }

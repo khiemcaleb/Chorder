@@ -6,7 +6,15 @@
 </ng-template>
 
 <ng-template #lyricsPart>
-    This is the day <br/>
-    This is the day that the Lord has made <br/>
-    I will rejoic and be glad in it
+    <div class="lyrics" (click)="onLyricsClick()">
+        <div *ngIf="isEditing; then lyricsEditor else lyricsReader"></div>
+    </div>
+</ng-template>
+
+<ng-template #lyricsEditor>
+    <textarea (focusout)="onLyricsBlur()" [appFocus]="isFocus">{{part.lyrics}}</textarea>
+</ng-template>
+
+<ng-template #lyricsReader>
+    <pre>{{part.lyrics}}</pre>
 </ng-template>
