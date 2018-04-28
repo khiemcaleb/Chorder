@@ -1,7 +1,7 @@
 import { CellComponent } from './../cell/cell.component';
-import { SongMode } from './../song/song';
 import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { Cell } from '../cell/cell.component';
+import { DisplayMode } from '../song/song';
 
 @Component({
   selector: 'app-line',
@@ -13,7 +13,8 @@ export class LineComponent {
   @ViewChildren(CellComponent) cellCmps: QueryList<CellComponent>;
 
   @Input() line: Line;
-  SongMode = SongMode;
+  @Input() displayMode: DisplayMode;
+  @Input() isReadOnly: boolean;
 
   onCellTab(cellCmp: CellComponent) {
     if (cellCmp.index < this.cellCmps.length - 1) {

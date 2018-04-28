@@ -5,4 +5,14 @@
   </h1>
 </div>
 
-<app-song></app-song>
+<div class="row">
+  <div class="col-sm">
+    <app-song [song]="song" [isReadOnly]="false" [displayMode]="DisplayMode.LYRICS" ></app-song>
+  </div>
+  <div class="col-sm">
+    <app-song [song]="song" [isReadOnly]="true" [displayMode]="DisplayMode.FULL" ></app-song>
+  </div>
+  <div class="col-sm">
+    <app-song [song]="song" [isReadOnly]="false" [displayMode]="DisplayMode.FULL" ></app-song>
+  </div>
+</div>

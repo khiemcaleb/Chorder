@@ -1,2 +1,12 @@
 <h3>{{part.name}}</h3>
-<app-line *ngFor="let line of part.lines" [line]="line"></app-line>
+
+<div *ngIf="displayMode == DisplayMode.FULL; then chordPart else lyricsPart"></div>
+<ng-template #chordPart>
+    <app-line *ngFor="let line of part.lines" [line]="line" [displayMode]="displayMode" [isReadOnly]="isReadOnly"></app-line>
+</ng-template>
+
+<ng-template #lyricsPart>
+    This is the day <br/>
+    This is the day that the Lord has made <br/>
+    I will rejoic and be glad in it
+</ng-template>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SongsService } from './song/songs.service';
+import { DisplayMode } from './song/song';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  song;
+  DisplayMode: typeof DisplayMode = DisplayMode;
+
+  constructor(songService: SongsService) {
+    this.song = songService.getSongById();
+  }
 }

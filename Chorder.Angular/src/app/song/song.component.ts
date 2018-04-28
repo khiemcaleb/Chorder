@@ -1,22 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { SongsService } from './songs.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Song, DisplayMode } from './song';
 
 @Component({
   selector: 'app-song',
   templateUrl: './song.component.html',
   styleUrls: ['./song.component.css']
 })
-export class SongComponent implements OnInit {
-  song;
+export class SongComponent {
+  constructor() {
 
-  constructor(songService: SongsService) {
-    this.song = songService.getSongById();
   }
 
-  ngOnInit() {
-  }
-
-  songToString(){
-    return JSON.stringify(this.song);
-  }
+  @Input() song: Song;
+  @Input() isReadOnly: boolean;
+  @Input() displayMode: DisplayMode;
 }

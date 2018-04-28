@@ -1,18 +1,17 @@
-<div class="cell {{mode}}" (click)="onCellClick($event)">
+<div class="cell" [ngClass]="{
+    'editable': !isReadOnly,
+    'readonly': isReadOnly
+  }" (click)="onCellClick()">
   <div class="chord">
     <div *ngIf="isEditing; then chordEditor else chordReader"></div>
     <ng-template #chordEditor>
-      <input *ngIf="isEditing" 
-      [(ngModel)]="cell.chord"
-      (focusout)="onChordBlur()"
-      (keydown.tab)="onChordTab()" 
-      [appFocus]="isFocus">
+      <input [(ngModel)]="cell.chord" (focusout)="onChordBlur()" (keydown.tab)="onChordTab()" [appFocus]="isFocus">
     </ng-template>
 
     <ng-template #chordReader>
-      <span *ngIf="!isEditing">{{cell.chord}}</span>
+      <span>{{cell.chord}}</span>
     </ng-template>
   </div>
 
-  <div class="word {{mode}}">{{cell.word}}</div>
+  <div class="word {{displayMode}}">{{cell.word}}</div>
 </div>
