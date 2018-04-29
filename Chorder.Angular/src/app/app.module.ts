@@ -32,6 +32,8 @@ import { SongManagerComponent } from './song-manager/song-manager.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'songs/:id/:title', component: SongComponent },
+      { path: 'songs', component: SongManagerComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],

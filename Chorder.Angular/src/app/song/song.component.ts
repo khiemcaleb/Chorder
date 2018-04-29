@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Song, DisplayMode } from './song';
+import { ActivatedRoute } from '@angular/router';
+import { SongsService } from './songs.service';
 
 @Component({
   selector: 'app-song',
@@ -7,11 +9,16 @@ import { Song, DisplayMode } from './song';
   styleUrls: ['./song.component.css']
 })
 export class SongComponent {
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(params => {
+      let id = +params.get('id');
+      let title = params.get('title');
 
+      this.song = new SongsService().getSongById(id);
+    })
   }
 
   @Input() song: Song;
-  @Input() isReadOnly: boolean;
-  @Input() displayMode: DisplayMode;
+  @Input() isReadOnly: boolean = true;
+  @Input() displayMode: DisplayMode = DisplayMode.FULL;
 }

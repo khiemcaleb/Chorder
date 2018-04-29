@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class SongsService {
 
   constructor() { }
-  getSongById() {
+  getSongById(id: number) {
     return {
       title: 'This is the day',
       parts: [
