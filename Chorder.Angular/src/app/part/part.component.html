@@ -6,7 +6,7 @@
 </ng-template>
 
 <ng-template #lyricsPart>
-    <div class="lyrics" (click)="onLyricsClick()">
+    <div class="lyrics" [ngClass]="{'editable': !isReadOnly}" (click)="onLyricsClick()">
         <div *ngIf="isEditing; then lyricsEditor else lyricsReader"></div>
     </div>
 </ng-template>

@@ -10,3 +10,9 @@ export enum DisplayMode {
   LYRICS = "display-lyrics",
   FULL = "display-full"
 }
+
+export enum EditMode {
+  CHORD = "edit-chord",
+  LYRICS = "edit-lyrics",
+  VIEW = "view"
+}

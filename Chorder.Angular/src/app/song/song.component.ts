@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Song, DisplayMode } from './song';
+import { Song, DisplayMode, EditMode } from './song';
 import { ActivatedRoute } from '@angular/router';
 import { SongsService } from './songs.service';
 
@@ -22,18 +22,28 @@ export class SongComponent {
   @Input() isReadOnly: boolean = true;
   @Input() displayMode: DisplayMode = DisplayMode.FULL;
 
-  editLyrics(){
+  // This is just for quick navigation
+  EditMode: typeof EditMode = EditMode;
+  editMode: EditMode = EditMode.VIEW;
+
+  editLyrics($event){
+    $event.preventDefault();
     this.isReadOnly = false;
     this.displayMode = DisplayMode.LYRICS;
+    this.editMode = EditMode.LYRICS;
   }
 
-  editChord(){
+  editChord($event){
+    $event.preventDefault();
     this.isReadOnly = false;
     this.displayMode = DisplayMode.FULL;
+    this.editMode = EditMode.CHORD;
   }
 
-  viewFull(){
+  view($event){
+    $event.preventDefault();
     this.isReadOnly = true;
     this.displayMode = DisplayMode.FULL;
+    this.editMode =  EditMode.VIEW;
   }
 }

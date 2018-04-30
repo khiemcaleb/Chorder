@@ -1,6 +1,14 @@
 <h2>{{song.title}}</h2>
-<app-part *ngFor="let part of song.parts" [part]="part" [isReadOnly]="isReadOnly" [displayMode]="displayMode"></app-part>
-<button class="btn btn-primary" (click)="editLyrics()">Lyrics</button>
-<button class="btn btn-primary" (click)="editChord()">Chord</button>
-<button class="btn btn-primary" (click)="viewFull()">View</button>
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link" [class.active]="editMode == EditMode.VIEW" (click)="view($event)" href>View</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [class.active]="editMode == EditMode.LYRICS" (click)="editLyrics($event)" href>Lyrics</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [class.active]="editMode == EditMode.CHORD" (click)="editChord($event)" href>Chord</a>
+    </li>
+</ul>
 
+<app-part *ngFor="let part of song.parts" [part]="part" [isReadOnly]="isReadOnly" [displayMode]="displayMode"></app-part>
