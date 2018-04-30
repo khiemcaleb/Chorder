@@ -13,6 +13,7 @@ import { FocusDirective } from './focus.directive';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SongManagerComponent } from './song-manager/song-manager.component';
+import { LyricsComponent } from './lyrics/lyrics.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SongManagerComponent } from './song-manager/song-manager.component';
     FocusDirective,
     NotFoundComponent,
     HomeComponent,
-    SongManagerComponent
+    SongManagerComponent,
+    LyricsComponent
   ],
   imports: [
     BrowserModule,

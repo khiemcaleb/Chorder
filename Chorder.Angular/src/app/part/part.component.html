@@ -1,20 +1,14 @@
 <h3>{{part.name}}</h3>
 
+<!-- Part contents -->
 <div *ngIf="displayMode == DisplayMode.FULL; then chordPart else lyricsPart"></div>
+
+<!-- Chorder parts -->
 <ng-template #chordPart>
     <app-line *ngFor="let line of part.lines" [line]="line" [displayMode]="displayMode" [isReadOnly]="isReadOnly"></app-line>
 </ng-template>
 
+<!-- Lyricsist parts -->
 <ng-template #lyricsPart>
-    <div class="lyrics" [ngClass]="{'editable': !isReadOnly}" (click)="onLyricsClick()">
-        <div *ngIf="isEditing; then lyricsEditor else lyricsReader"></div>
-    </div>
-</ng-template>
-
-<ng-template #lyricsEditor>
-    <textarea (focusout)="onLyricsBlur()" [appFocus]="isFocus">{{part.lyrics}}</textarea>
-</ng-template>
-
-<ng-template #lyricsReader>
-    <pre>{{part.lyrics}}</pre>
+    <app-lyrics [part]="part" [isReadOnly]="isReadOnly"></app-lyrics>
 </ng-template>

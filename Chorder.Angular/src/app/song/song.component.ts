@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Song, DisplayMode, EditMode } from './song';
 import { ActivatedRoute } from '@angular/router';
 import { SongsService } from './songs.service';
+import { Part } from '../part/part.component';
 
 @Component({
   selector: 'app-song',
@@ -26,24 +27,32 @@ export class SongComponent {
   EditMode: typeof EditMode = EditMode;
   editMode: EditMode = EditMode.VIEW;
 
-  editLyrics($event){
+  editLyrics($event) {
     $event.preventDefault();
     this.isReadOnly = false;
     this.displayMode = DisplayMode.LYRICS;
     this.editMode = EditMode.LYRICS;
   }
 
-  editChord($event){
+  editChord($event) {
     $event.preventDefault();
     this.isReadOnly = false;
     this.displayMode = DisplayMode.FULL;
     this.editMode = EditMode.CHORD;
   }
 
-  view($event){
+  view($event) {
     $event.preventDefault();
     this.isReadOnly = true;
     this.displayMode = DisplayMode.FULL;
-    this.editMode =  EditMode.VIEW;
+    this.editMode = EditMode.VIEW;
+  }
+
+  addPart() {
+    this.song.parts.push({
+        lines: [],
+        lyrics: '', // TODO: Need null validation
+        name: 'Part name'
+      });
   }
 }

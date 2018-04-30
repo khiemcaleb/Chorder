@@ -10,24 +10,11 @@ import { DisplayMode } from '../song/song';
 export class PartComponent {
   @Input() part: Part;
   @Input() displayMode: DisplayMode;
-  @Input() isReadOnly: boolean;  
+  @Input() isReadOnly: boolean;
 
   isEditing: boolean = false;
   isFocus: boolean = true;
   DisplayMode: typeof DisplayMode = DisplayMode;
-
-  onLyricsClick(){
-    if (!this.isReadOnly && !this.isEditing)
-      this.isEditing = true;
-  }
-
-  onLyricsBlur(){
-    if (this.isEditing)
-      this.isEditing = false;
-
-    if (!this.isFocus)
-      this.isFocus = true;
-  }
 
 }
 

@@ -1,0 +1,11 @@
+<div class="lyrics" [ngClass]="{'editable': !isReadOnly}" (click)="onLyricsClick()">
+    <div *ngIf="isEditing; then lyricsEditor else lyricsReader"></div>
+</div>
+
+<ng-template #lyricsEditor>
+    <textarea (focusout)="onLyricsBlur()" [appFocus]="isFocus" [(ngModel)]="part.lyrics"></textarea>
+</ng-template>
+
+<ng-template #lyricsReader>
+    <pre>{{part.lyrics}}</pre>
+</ng-template>
