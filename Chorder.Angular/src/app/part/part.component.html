@@ -1,4 +1,7 @@
-<h3>{{part.name}}</h3>
+<h3 *ngIf="!isEditing; else partNameEditor" [class.editable]="!isReadOnly" (click)="onPartNameClick()">{{part.name}}</h3>
+<ng-template #partNameEditor>
+    <input  [appFocus]="isFocus" type="text" [(ngModel)]="part.name" (blur)="onPartNameBlur()">
+</ng-template>
 
 <!-- Part contents -->
 <div *ngIf="displayMode == DisplayMode.FULL; then chordPart else lyricsPart"></div>
