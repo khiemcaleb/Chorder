@@ -19,8 +19,13 @@
 .cell .chord {
     font-weight: bold;
     text-align: center;
+    min-height: 25px;
 }
 
 .cell > .chord > input {
     width: 50px;
+}
+
+.cell .word {
+    text-align: center;
 }
