@@ -40,6 +40,7 @@ export class LineComponent {
 
 export class Line {
   cells: Cell[];
+  
   constructor(textLine: string) {
     this.cells = [];
     var words = textLine.split(' ');

@@ -42,16 +42,13 @@ export class LyricsComponent implements OnInit {
   }
 
   onLyricsChange(){
+    this.part.lyrics = this.beautifyLyrics(this.part.lyrics);
+
     this.part.lines = this.parseLines(this.part.lyrics);
   }
 
   parseLines(text:string){
     var lines: Line[] = [];
-
-    text = text
-      .replace("  ", " ")
-      .trim();
-    
     var textLines = text.split('\n');
 
     for (let i = 0; i < textLines.length; i++){
@@ -59,6 +56,16 @@ export class LyricsComponent implements OnInit {
     }
 
     return lines;
+  }
+
+  beautifyLyrics(text: string){
+    while (text.indexOf("  ") !== -1)
+      text = text.replace("  ", " ");
+
+    while (text.indexOf("\n\n") !== -1 )
+      text = text.replace("\n\n", "\n");
+
+    return text.trim();
   }
 
 }
