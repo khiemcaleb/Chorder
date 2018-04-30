@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Line } from '../line/line.component';
+import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
+import { Line, LineComponent } from '../line/line.component';
 import { DisplayMode } from '../song/song';
 
 @Component({
@@ -11,6 +11,8 @@ export class PartComponent {
   @Input() part: Part;
   @Input() displayMode: DisplayMode;
   @Input() isReadOnly: boolean;
+
+  @ViewChildren(LineComponent) lineComponents: QueryList<LineComponent>;
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -34,6 +36,15 @@ export class PartComponent {
     }
   }
 
+  onLineTab(lineComponent: LineComponent) {
+    if (lineComponent.index < this.lineComponents.length - 1) {
+      var nextLineComponent = this.lineComponents.toArray()[lineComponent.index + 1];   
+      var firstCell = nextLineComponent.cellComponents.first;
+      firstCell.isFocus = false;
+      firstCell.isEditing = true;
+      
+    }
+  }
 }
 
 export class Part {

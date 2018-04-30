@@ -8,7 +8,12 @@
 
 <!-- Chorder parts -->
 <ng-template #chordPart>
-    <app-line *ngFor="let line of part.lines" [line]="line" [displayMode]="displayMode" [isReadOnly]="isReadOnly"></app-line>
+    <app-line *ngFor="let line of part.lines; index as i" 
+    [line]="line" 
+    [displayMode]="displayMode" 
+    [isReadOnly]="isReadOnly" 
+    [index]="i"
+    (tab) = "onLineTab($event)" ></app-line>
 </ng-template>
 
 <!-- Lyricsist parts -->

@@ -1,7 +1,10 @@
 import { CellComponent } from './../cell/cell.component';
-import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { Cell } from '../cell/cell.component';
 import { DisplayMode } from '../song/song';
+import { isArray } from 'util';
+import { Part } from '../part/part.component';
+
 
 @Component({
   selector: 'app-line',
@@ -10,20 +13,28 @@ import { DisplayMode } from '../song/song';
 })
 export class LineComponent {
 
-  @ViewChildren(CellComponent) cellCmps: QueryList<CellComponent>;
+  @ViewChildren(CellComponent) cellComponents: QueryList<CellComponent>;
 
   @Input() line: Line;
   @Input() displayMode: DisplayMode;
   @Input() isReadOnly: boolean;
+  @Input() index: number;
 
-  onCellTab(cellCmp: CellComponent) {
-    if (cellCmp.index < this.cellCmps.length - 1) {
-      var nextCellCmp: CellComponent = this.cellCmps.toArray()[cellCmp.index + 1];
-      nextCellCmp.isFocus = false;
-      nextCellCmp.isEditing = true;
-    } else {
+  @Output() tab = new EventEmitter();
+
+  onCellTab(cellComponent: CellComponent) {
+    if (cellComponent.index < this.cellComponents.length - 1) {
+      var nextCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index + 1];
+      nextCellComponent.isFocus = false;
+      nextCellComponent.isEditing = true;
+
+
+    } else if (cellComponent.index == this.cellComponents.length - 1) {
       // next line
+        this.tab.emit(this);
+      
     }
+
   }
 }
 
