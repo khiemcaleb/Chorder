@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DisplayMode } from '../song/song';
 import { Part } from '../part/part.component';
+import { Line } from '../line/line.component';
 
 @Component({
   selector: 'app-lyrics',
@@ -8,7 +9,7 @@ import { Part } from '../part/part.component';
   styleUrls: ['./lyrics.component.css']
 })
 export class LyricsComponent implements OnInit {
-  
+
   @Input() isReadOnly: boolean;
   @Input() part: Part;
 
@@ -38,6 +39,26 @@ export class LyricsComponent implements OnInit {
 
     if (!this.isFocus)
       this.isFocus = true;
+  }
+
+  onLyricsChange(){
+    this.part.lines = this.parseLines(this.part.lyrics);
+  }
+
+  parseLines(text:string){
+    var lines: Line[] = [];
+
+    text = text
+      .replace("  ", " ")
+      .trim();
+    
+    var textLines = text.split('\n');
+
+    for (let i = 0; i < textLines.length; i++){
+      lines.push(new Line(textLines[i]));
+    }
+
+    return lines;
   }
 
 }

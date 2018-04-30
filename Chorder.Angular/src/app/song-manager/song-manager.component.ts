@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Song } from '../song/song';
 
 @Component({
   selector: 'app-song-manager',
@@ -11,5 +12,4 @@ export class SongManagerComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
