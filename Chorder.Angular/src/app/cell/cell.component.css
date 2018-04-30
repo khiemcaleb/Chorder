@@ -9,6 +9,7 @@
 }
 .cell.editable:hover {
     background-color:lightgray;
+    cursor: pointer;
 }
 
 .cell.readonly {
