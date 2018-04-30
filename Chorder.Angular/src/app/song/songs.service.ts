@@ -6,6 +6,7 @@ export class SongsService {
   constructor() { }
   getSongById(id: number) {
     return {
+      key: "C#m",
       title: 'This is the day',
       parts: [
         {

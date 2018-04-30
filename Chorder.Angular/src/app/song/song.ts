@@ -1,8 +1,16 @@
 import { Part } from "../part/part.component";
 
 export class Song {
+  key: string;
   title: string;
   parts: Part[];
+
+  constructor(){
+    this.key = 'A#';
+    this.title = 'My great new song';
+    this.parts = [];
+
+  }
 }
 
 export enum DisplayMode {

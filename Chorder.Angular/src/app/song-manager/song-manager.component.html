@@ -1,4 +1,10 @@
-<p>
-  song-manager works!
-</p>
-<a [routerLink]="['/songs', 1, 'This-is-the-day']">This is the day</a>
+<ul>
+  <li>
+    <a [routerLink]="['/songs', 1, 'This-is-the-day']">
+      This is the day
+      <span class="badge badge-secondary">C#m</span>
+    </a>
+  </li>
+</ul>
+
+<a class='btn btn-primary' [routerLink]="['/songs', 0, 'new-song']">Add new song</a>

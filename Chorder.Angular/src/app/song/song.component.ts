@@ -10,15 +10,6 @@ import { Part } from '../part/part.component';
   styleUrls: ['./song.component.css']
 })
 export class SongComponent {
-  constructor(private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(params => {
-      let id = +params.get('id');
-      let title = params.get('title');
-
-      this.song = new SongsService().getSongById(id);
-    })
-  }
-
   @Input() song: Song;
   @Input() isReadOnly: boolean = true;
   @Input() displayMode: DisplayMode = DisplayMode.FULL;
@@ -27,8 +18,24 @@ export class SongComponent {
   EditMode: typeof EditMode = EditMode;
   editMode: EditMode = EditMode.VIEW;
 
-  editLyrics($event) {
-    $event.preventDefault();
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(params => {
+      let id = +params.get('id');
+      let title = params.get('title');
+
+      if (id > 0){
+        this.song = new SongsService().getSongById(id);
+      }
+      else{
+        this.song = new Song();
+        this.editLyrics();
+      }
+
+    });
+  }
+
+  editLyrics($event = null) {
+    if ($event) $event.preventDefault();
     this.isReadOnly = false;
     this.displayMode = DisplayMode.LYRICS;
     this.editMode = EditMode.LYRICS;
