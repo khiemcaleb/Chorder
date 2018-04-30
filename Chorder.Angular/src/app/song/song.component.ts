@@ -21,4 +21,19 @@ export class SongComponent {
   @Input() song: Song;
   @Input() isReadOnly: boolean = true;
   @Input() displayMode: DisplayMode = DisplayMode.FULL;
+
+  editLyrics(){
+    this.isReadOnly = false;
+    this.displayMode = DisplayMode.LYRICS;
+  }
+
+  editChord(){
+    this.isReadOnly = false;
+    this.displayMode = DisplayMode.FULL;
+  }
+
+  viewFull(){
+    this.isReadOnly = true;
+    this.displayMode = DisplayMode.FULL;
+  }
 }

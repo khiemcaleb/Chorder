@@ -1,2 +1,6 @@
 <h2>{{song.title}}</h2>
 <app-part *ngFor="let part of song.parts" [part]="part" [isReadOnly]="isReadOnly" [displayMode]="displayMode"></app-part>
+<button class="btn btn-primary" (click)="editLyrics()">Lyrics</button>
+<button class="btn btn-primary" (click)="editChord()">Chord</button>
+<button class="btn btn-primary" (click)="viewFull()">View</button>
+
