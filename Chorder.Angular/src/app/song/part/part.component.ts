@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
 import { Line, LineComponent } from '../line/line.component';
-import { DisplayMode } from '../song/song';
+import { DisplayMode } from '../song';
 
 @Component({
   selector: 'app-part',

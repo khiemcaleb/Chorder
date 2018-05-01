@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DisplayMode } from '../song/song';
+import { DisplayMode } from '../song';
 
 @Component({
   selector: 'app-cell',

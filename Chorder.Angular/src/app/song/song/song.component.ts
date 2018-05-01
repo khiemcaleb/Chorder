@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Song, DisplayMode, EditMode } from './song';
 import { ActivatedRoute } from '@angular/router';
-import { SongsService } from './songs.service';
 import { Part } from '../part/part.component';
+import { Song, DisplayMode, EditMode } from '../song';
+import { SongsService } from '../songs.service';
 
 @Component({
   selector: 'app-song',
