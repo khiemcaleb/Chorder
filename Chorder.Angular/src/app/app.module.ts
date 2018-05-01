@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
-import { FocusDirective } from './focus.directive';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { SongModule } from './song/song.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FocusDirective,
     NotFoundComponent,
     HomeComponent
   ],
@@ -19,7 +18,8 @@ import { HomeComponent } from './home/home.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: '**', component: NotFoundComponent }
-    ])
+    ]),
+    SongModule
   ],
   providers: [],
   bootstrap: [AppComponent]

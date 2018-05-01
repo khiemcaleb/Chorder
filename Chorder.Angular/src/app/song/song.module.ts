@@ -9,34 +9,38 @@ import { PartComponent } from './part/part.component';
 import { SongComponent } from './song/song.component';
 import { SongManagerComponent } from './song-manager/song-manager.component';
 import { SongsService } from './songs.service';
+import { FocusDirective } from '../focus.directive';
+import { LyricsComponent } from './lyrics/lyrics.component';
 
 @NgModule({
   declarations: [
-    CellComponent,
-    LineComponent,
-    PartComponent,
+    SongManagerComponent,
     SongComponent,
-    SongManagerComponent
+    PartComponent,
+    LineComponent,
+    CellComponent,
+    LyricsComponent,
+    FocusDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      // { path: 'songs/:id/:title', component: SongComponent },
-       { path: 'songs', component: SongManagerComponent }
+      {
+        path: 'songs',
+        children: [
+          { path: ':id/:title', component: SongComponent },
+          { path: '', component: SongManagerComponent }
+        ]
+      }
     ])
   ],
-  providers:[
+  providers: [
     SongsService
   ],
-  exports:[
+  exports: [
     RouterModule
-    // CellComponent,
-    // LineComponent,
-    // PartComponent,
-    // SongComponent,
-    // SongManagerComponent
   ]
-  
+
 })
 export class SongModule { }
