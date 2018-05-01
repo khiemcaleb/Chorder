@@ -14,6 +14,12 @@
     </li>
 </ul>
 
-<app-part *ngFor="let part of song.parts" [part]="part" [isReadOnly]="isReadOnly" [displayMode]="displayMode"></app-part>
+<app-part *ngFor="let part of song.parts;index as i" 
+[part]="part" 
+[isReadOnly]="isReadOnly" 
+[displayMode]="displayMode"
+[index]="i"
+(tab)="onPartTab($event)" 
+></app-part>
 
 <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="addPart()">Add a part</button>
