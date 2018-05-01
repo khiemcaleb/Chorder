@@ -1,10 +1,9 @@
 import { CellComponent } from './../cell/cell.component';
 import { Component, OnInit, Input, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { Cell } from '../cell/cell.component';
-import { DisplayMode } from '../song/song';
 import { isArray } from 'util';
 import { Part } from '../part/part.component';
-
+import { DisplayMode } from '../song';
 
 @Component({
   selector: 'app-line',

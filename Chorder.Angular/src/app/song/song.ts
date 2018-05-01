@@ -1,4 +1,4 @@
-import { Part } from "../part/part.component";
+import { Part } from "./part/part.component";
 
 export class Song {
   key: string;
