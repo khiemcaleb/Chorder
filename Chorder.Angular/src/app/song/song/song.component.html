@@ -2,24 +2,8 @@
     {{song.title}}
 </h2>
 <span class="badge badge-secondary">{{song.key}}</span>
-<!-- <ul class="nav nav-pills">
-    <li class="nav-item">
-        <a class="nav-link" [class.active]="editMode == EditMode.VIEW" (click)="view($event)" href>Preview</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" [class.active]="editMode == EditMode.LYRICS" (click)="editLyrics($event)" href>Lyrics</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" [class.active]="editMode == EditMode.CHORD" (click)="editChord($event)" href>Chord</a>
-    </li>
-</ul> -->
- 
-<app-part *ngFor="let part of song.parts;index as i" 
-[part]="part" 
-[mode]="mode" 
-[view]="view"
-[index]="i"
-(tab)="onPartTab($event)" 
-></app-part>
+<ng-content select=".song-view-mode"></ng-content>
 
-<!-- <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="addPart()">Add a part</button> -->
+<app-part *ngFor="let part of song.parts;index as i" [part]="part" [mode]="mode" [view]="view" [index]="i" (tab)="onPartTab($event)"></app-part>
+
+<button class="btn btn-primary" *ngIf="mode == SongMode.EDIT" (click)="addPart()">Add a part</button>

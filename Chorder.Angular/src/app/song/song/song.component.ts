@@ -15,6 +15,8 @@ export class SongComponent {
   @Input() mode: SongMode;
   @Input() view: ViewMode;
 
+  SongMode: typeof SongMode = SongMode;
+
   @ViewChildren(PartComponent) partComponents: QueryList<PartComponent>;
 
   constructor(private route: ActivatedRoute) {
@@ -27,32 +29,12 @@ export class SongComponent {
       }
       else {
         this.song = new Song();
-        this.editLyrics();
       }
 
     });
   }
 
-  editLyrics($event = null) {
-    // if ($event) $event.preventDefault();
-    // this.isReadOnly = false;
-    // this.displayMode = DisplayMode.LYRICS;
-    // this.editMode = EditMode.LYRICS;
-  }
 
-  editChord($event) {
-    // $event.preventDefault();
-    // this.isReadOnly = false;
-    // this.displayMode = DisplayMode.FULL;
-    // this.editMode = EditMode.CHORD;
-  }
-
-  display($event) {
-    // $event.preventDefault();
-    // this.isReadOnly = true;
-    // this.displayMode = DisplayMode.FULL;
-    // this.editMode = EditMode.VIEW;
-  }
 
   onPartTab(partComponent: PartComponent) {
     if (partComponent.index < this.partComponents.length - 1) {
