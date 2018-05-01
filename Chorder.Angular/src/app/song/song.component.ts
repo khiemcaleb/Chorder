@@ -56,6 +56,7 @@ export class SongComponent {
     this.displayMode = DisplayMode.FULL;
     this.editMode = EditMode.VIEW;
   }
+
   onPartTab(partComponent: PartComponent) {
     if (partComponent.index < this.partComponents.length - 1) {
       var nextPartComponent = this.partComponents.toArray()[partComponent.index + 1];
@@ -63,8 +64,8 @@ export class SongComponent {
       firstCell.isFocus = false;
       firstCell.isEditing = true;
     }
-    
   }
+  
   addPart() {
     this.song.parts.push({
       lines: [],

@@ -46,8 +46,7 @@ export class PartComponent {
       firstCell.isFocus = false;
       firstCell.isEditing = true;
     }
-
-    if (lineComponent.index == this.lineComponents.length - 1) {
+    else if (lineComponent.index == this.lineComponents.length - 1) {
       this.tab.emit(this);
     }
   }
