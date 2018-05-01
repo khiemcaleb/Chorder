@@ -1,8 +1,2 @@
-<app-cell 
-    *ngFor="let cell of line.cells; index as i" 
-    [cell]="cell" 
-    [displayMode]="displayMode"
-    [isReadOnly]="isReadOnly"
-    (tab)="onCellTab($event)"
-    [index]="i"
-    ></app-cell>
+<app-cell *ngFor="let cell of line.cells; index as i" [cell]="cell" [mode]="mode" [view]="view" (tab)="onCellTab($event)"
+    [index]="i"></app-cell>

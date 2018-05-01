@@ -1,4 +1,4 @@
-<div class="lyrics" [ngClass]="{'editable': !isReadOnly}" (click)="onLyricsClick()">
+<div class="lyrics" [ngClass]="{'editable': mode == SongMode.EDIT}" (click)="onLyricsClick()">
     <div *ngIf="isEditing; then lyricsEditor else lyricsReader"></div>
 </div>
 

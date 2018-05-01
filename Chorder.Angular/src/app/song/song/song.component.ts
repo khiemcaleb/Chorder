@@ -2,7 +2,7 @@
 import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Part, PartComponent } from '../part/part.component';
-import { Song, DisplayMode, EditMode } from '../song';
+import { Song, ViewMode, SongMode } from '../song';
 import { SongsService } from '../songs.service';
 
 @Component({
@@ -12,14 +12,10 @@ import { SongsService } from '../songs.service';
 })
 export class SongComponent {
   @Input() song: Song;
-  @Input() isReadOnly: boolean = true;
-  @Input() displayMode: DisplayMode = DisplayMode.FULL;
+  @Input() mode: SongMode;
+  @Input() view: ViewMode;
 
   @ViewChildren(PartComponent) partComponents: QueryList<PartComponent>;
-
-  // This is just for quick navigation
-  EditMode: typeof EditMode = EditMode;
-  editMode: EditMode = EditMode.VIEW;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
@@ -38,24 +34,24 @@ export class SongComponent {
   }
 
   editLyrics($event = null) {
-    if ($event) $event.preventDefault();
-    this.isReadOnly = false;
-    this.displayMode = DisplayMode.LYRICS;
-    this.editMode = EditMode.LYRICS;
+    // if ($event) $event.preventDefault();
+    // this.isReadOnly = false;
+    // this.displayMode = DisplayMode.LYRICS;
+    // this.editMode = EditMode.LYRICS;
   }
 
   editChord($event) {
-    $event.preventDefault();
-    this.isReadOnly = false;
-    this.displayMode = DisplayMode.FULL;
-    this.editMode = EditMode.CHORD;
+    // $event.preventDefault();
+    // this.isReadOnly = false;
+    // this.displayMode = DisplayMode.FULL;
+    // this.editMode = EditMode.CHORD;
   }
 
-  view($event) {
-    $event.preventDefault();
-    this.isReadOnly = true;
-    this.displayMode = DisplayMode.FULL;
-    this.editMode = EditMode.VIEW;
+  display($event) {
+    // $event.preventDefault();
+    // this.isReadOnly = true;
+    // this.displayMode = DisplayMode.FULL;
+    // this.editMode = EditMode.VIEW;
   }
 
   onPartTab(partComponent: PartComponent) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { Line, LineComponent } from '../line/line.component';
-import { DisplayMode } from '../song';
+import { ViewMode, SongMode } from '../song';
 
 @Component({
   selector: 'app-part',
@@ -9,8 +9,8 @@ import { DisplayMode } from '../song';
 })
 export class PartComponent {
   @Input() part: Part;
-  @Input() displayMode: DisplayMode;
-  @Input() isReadOnly: boolean;
+  @Input() view: ViewMode;
+  @Input() mode: SongMode;
   @Input() index: number;
 
   @ViewChildren(LineComponent) lineComponents: QueryList<LineComponent>;
@@ -19,14 +19,15 @@ export class PartComponent {
 
   isEditing: boolean = false;
   isFocus: boolean = true;
-  DisplayMode: typeof DisplayMode = DisplayMode;
+  SongMode: typeof SongMode = SongMode;
+  ViewMode: typeof ViewMode = ViewMode;
 
   get isEmptyName(): boolean {
     return !this.part.name && this.part.name.trim() == '';
   }
 
   onPartNameClick() {
-    if (!this.isReadOnly && !this.isEditing)
+    if (this.mode == SongMode.EDIT && !this.isEditing)
       this.isEditing = true;
   }
 

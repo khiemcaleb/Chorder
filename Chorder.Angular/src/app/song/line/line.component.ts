@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ViewChildren, QueryList, Output, EventEmitter
 import { Cell } from '../cell/cell.component';
 import { isArray } from 'util';
 import { Part } from '../part/part.component';
-import { DisplayMode } from '../song';
+import { SongMode, ViewMode } from '../song';
 
 @Component({
   selector: 'app-line',
@@ -15,11 +15,14 @@ export class LineComponent {
   @ViewChildren(CellComponent) cellComponents: QueryList<CellComponent>;
 
   @Input() line: Line;
-  @Input() displayMode: DisplayMode;
-  @Input() isReadOnly: boolean;
+  @Input() mode: SongMode;
+  @Input() view: ViewMode;
   @Input() index: number;
 
   @Output() tab = new EventEmitter();
+
+  SongMode: typeof SongMode = SongMode;
+  ViewMode: typeof ViewMode = ViewMode;
 
   onCellTab(cellComponent: CellComponent) {
     if (cellComponent.index < this.cellComponents.length - 1) {
@@ -30,16 +33,14 @@ export class LineComponent {
 
     } else if (cellComponent.index == this.cellComponents.length - 1) {
       // next line
-        this.tab.emit(this);
-      
+      this.tab.emit(this);
     }
-
   }
 }
 
 export class Line {
   cells: Cell[];
-  
+
   constructor(textLine: string) {
     this.cells = [];
     var words = textLine.split(' ');

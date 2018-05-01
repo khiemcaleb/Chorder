@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DisplayMode } from '../song';
+import { SongMode, ViewMode } from '../song';
 
 @Component({
   selector: 'app-cell',
@@ -10,16 +10,18 @@ export class CellComponent {
 
   @Input() cell: Cell;
   @Input() index: number;
-  @Input() displayMode: DisplayMode;
-  @Input() isReadOnly: boolean;
+  @Input() mode: SongMode;
+  @Input() view: ViewMode;
 
   @Output() tab = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
+  SongMode: typeof SongMode = SongMode;
+  ViewMode: typeof ViewMode = ViewMode;
 
   onCellClick() {
-    if (!this.isEditing && !this.isReadOnly) {
+    if (!this.isEditing && this.mode == SongMode.EDIT) {
       this.isEditing = true;
     }
   }

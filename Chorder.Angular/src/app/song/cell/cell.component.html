@@ -1,7 +1,6 @@
 <div class="cell" [ngClass]="{
-    'editable': !isReadOnly,
-    'readonly': isReadOnly
-  }" (click)="onCellClick()">
+    'editable': mode == SongMode.EDIT,
+    'readonly': mode == SongMode.VIEW }" (click)="onCellClick()">
   <div class="chord">
     <div *ngIf="isEditing; then chordEditor else chordReader"></div>
     <ng-template #chordEditor>

@@ -4,19 +4,19 @@
 </ng-template>
 
 <!-- Part contents -->
-<div *ngIf="displayMode == DisplayMode.FULL; then chordPart else lyricsPart"></div>
+<div *ngIf="view == ViewMode.FULL; then fullPart else lyricsPart"></div>
 
 <!-- Chorder parts -->
-<ng-template #chordPart>
+<ng-template #fullPart>
     <app-line *ngFor="let line of part.lines; index as i" 
     [line]="line" 
-    [displayMode]="displayMode" 
-    [isReadOnly]="isReadOnly" 
+    [mode]="mode" 
+    [view]="view" 
     [index]="i"
     (tab) = "onLineTab($event)" ></app-line>
 </ng-template>
 
 <!-- Lyricsist parts -->
 <ng-template #lyricsPart>
-    <app-lyrics [part]="part" [isReadOnly]="isReadOnly"></app-lyrics>
+    <app-lyrics [part]="part" [mode]="mode"></app-lyrics>
 </ng-template>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Part } from '../part/part.component';
 import { Line } from '../line/line.component';
-import { DisplayMode } from '../song';
+import { SongMode, ViewMode } from '../song';
 
 @Component({
   selector: 'app-lyrics',
@@ -12,10 +12,13 @@ export class LyricsComponent implements OnInit {
 
   @Input() isReadOnly: boolean;
   @Input() part: Part;
+  @Input() mode: SongMode;
 
   isEditing: boolean = false;
   isFocus: boolean = true;
-  DisplayMode: typeof DisplayMode = DisplayMode;
+  SongMode: typeof SongMode = SongMode;
+  ViewMode: typeof ViewMode = ViewMode;
+  
   constructor() { }
 
   get isEmptyLyrics(): boolean {

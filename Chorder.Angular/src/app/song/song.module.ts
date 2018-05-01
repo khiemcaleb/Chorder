@@ -11,6 +11,8 @@ import { SongManagerComponent } from './song-manager/song-manager.component';
 import { SongsService } from './songs.service';
 import { FocusDirective } from '../focus.directive';
 import { LyricsComponent } from './lyrics/lyrics.component';
+import { SongEditorComponent } from './song-editor/song-editor.component';
+import { SongViewerComponent } from './song-viewer/song-viewer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LyricsComponent } from './lyrics/lyrics.component';
     LineComponent,
     CellComponent,
     LyricsComponent,
-    FocusDirective
+    FocusDirective,
+    SongEditorComponent,
+    SongViewerComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,8 @@ import { LyricsComponent } from './lyrics/lyrics.component';
       {
         path: 'songs',
         children: [
-          { path: ':id/:title', component: SongComponent },
+          { path: ':id/:title/edit', component: SongEditorComponent },
+          { path: ':id/:title', component: SongViewerComponent },
           { path: '', component: SongManagerComponent }
         ]
       }
