@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
-import { Line, LineComponent } from '../line/line.component';
-import { ViewMode, SongMode } from '../song';
+import { Part } from '../models/part';
+import { LineComponent } from '../line/line.component';
+import { SongMode, ViewMode } from '../models/song';
 
 @Component({
   selector: 'app-part',
@@ -51,10 +52,4 @@ export class PartComponent {
       this.tab.emit(this);
     }
   }
-}
-
-export class Part {
-  name: string;
-  lines: Line[];
-  lyrics: string;
 }

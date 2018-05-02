@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SongMode, ViewMode } from '../song';
+import { Cell } from '../models/cell';
+import { SongMode, ViewMode } from '../models/song';
 
 @Component({
   selector: 'app-cell',
@@ -42,15 +43,4 @@ export class CellComponent {
   onChordTab() {
     this.tab.emit(this);
   }
-}
-
-export class Cell {
-  chord: string;
-  word: string;
-
-  constructor(word: string = '', chord: string = ''){
-    this.word = word;
-    this.chord = chord;
-  }
-
 }

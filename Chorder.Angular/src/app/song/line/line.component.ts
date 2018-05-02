@@ -1,9 +1,8 @@
 import { CellComponent } from './../cell/cell.component';
 import { Component, OnInit, Input, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
-import { Cell } from '../cell/cell.component';
 import { isArray } from 'util';
-import { Part } from '../part/part.component';
-import { SongMode, ViewMode } from '../song';
+import { Line } from '../models/line';
+import { SongMode, ViewMode } from '../models/song';
 
 @Component({
   selector: 'app-line',
@@ -35,21 +34,5 @@ export class LineComponent {
       // next line
       this.tab.emit(this);
     }
-  }
-}
-
-export class Line {
-  cells: Cell[];
-
-  constructor(textLine: string) {
-    this.cells = [];
-    var words = textLine.split(' ');
-
-    for (let i = 0; i < words.length; i++) {
-      this.cells.push(new Cell());
-      this.cells.push(new Cell(words[i]));
-    }
-
-    this.cells.push(new Cell());
   }
 }

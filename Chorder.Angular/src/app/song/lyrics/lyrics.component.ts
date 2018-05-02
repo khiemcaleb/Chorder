@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Part } from '../part/part.component';
-import { Line } from '../line/line.component';
-import { SongMode, ViewMode, Song } from '../song';
+import { SongMode, ViewMode } from '../models/song';
+import { Part } from '../models/part';
+import { Line } from '../models/line';
 
 @Component({
   selector: 'app-lyrics',

@@ -1,8 +1,7 @@
-
 import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
-import { Part, PartComponent } from '../part/part.component';
-import { Song, ViewMode, SongMode } from '../song';
 import { SongsService } from '../songs.service';
+import { Song, SongMode, ViewMode } from '../models/song';
+import { PartComponent } from '../part/part.component';
 
 @Component({
   selector: 'app-song',

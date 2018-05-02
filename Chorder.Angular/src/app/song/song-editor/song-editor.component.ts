@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SongsService } from '../songs.service';
-import { Song, SongMode, ViewMode } from '../song';
 import { SongComponent } from '../song/song.component';
+import { Song, SongMode, ViewMode } from '../models/song';
 
 @Component({
   selector: 'app-song-editor',
