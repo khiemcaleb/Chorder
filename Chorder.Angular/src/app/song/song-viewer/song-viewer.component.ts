@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Song, SongMode, ViewMode } from '../song';
 import { SongComponent } from '../song/song.component';
-import { ActivatedRoute } from '@angular/router';
 import { SongsService } from '../songs.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-song-viewer',
@@ -25,7 +25,8 @@ export class SongViewerComponent implements OnInit {
         this.song = new SongsService().getSongById(id);
       }
       else {
-        this.song = new Song();
+        // TODO:
+        // Cannot view a song which does not exist  
       }
     });
   }

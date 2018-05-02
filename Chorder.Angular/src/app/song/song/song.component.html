@@ -6,4 +6,4 @@
 
 <app-part *ngFor="let part of song.parts;index as i" [part]="part" [mode]="mode" [view]="view" [index]="i" (tab)="onPartTab($event)"></app-part>
 
-<button class="btn btn-primary" *ngIf="mode == SongMode.EDIT" (click)="addPart()">Add a part</button>
+<button class="btn btn-primary" *ngIf="mode == SongMode.EDIT && view == ViewMode.LYRICS" (click)="addPart()">Add a part</button>

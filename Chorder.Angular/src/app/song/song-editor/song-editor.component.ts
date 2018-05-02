@@ -25,7 +25,11 @@ export class SongEditorComponent implements OnInit {
         this.song = new SongsService().getSongById(id);
       }
       else {
-        this.song = new Song();
+        this.song = {
+          title: 'My great song',
+          key: 'G',
+          parts: [{ name: "Verse", lines: [], lyrics: '' }]
+        };
       }
     });
   }
@@ -38,9 +42,9 @@ export class SongEditorComponent implements OnInit {
     this.songComponent.view = ViewMode.LYRICS;
   }
 
-  editChord($event) {
+  editFull($event) {
     $event.preventDefault();
-    this.songComponent.view = ViewMode.CHORD;
+    this.songComponent.view = ViewMode.FULL;
   }
 
 }
