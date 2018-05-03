@@ -11,7 +11,6 @@
         <app-lyrics [part]="part" [mode]="mode"></app-lyrics>
     </div>
     <div *ngSwitchCase="ViewMode.CHORD">
-        To be implemented with chord only!
         <app-line *ngFor="let line of part.lines; index as i" [line]="line" [mode]="mode" [view]="view" [index]="i" (tab)="onLineTab($event)"></app-line>
     </div>
 </div>
