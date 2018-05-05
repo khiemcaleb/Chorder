@@ -13,6 +13,7 @@ import { FocusDirective } from '../focus.directive';
 import { LyricsComponent } from './lyrics/lyrics.component';
 import { SongEditorComponent } from './song-editor/song-editor.component';
 import { SongViewerComponent } from './song-viewer/song-viewer.component';
+import { SongInfoComponent } from './song-info/song-info.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SongViewerComponent } from './song-viewer/song-viewer.component';
     LyricsComponent,
     FocusDirective,
     SongEditorComponent,
-    SongViewerComponent
+    SongViewerComponent,
+    SongInfoComponent
   ],
   imports: [
     CommonModule,

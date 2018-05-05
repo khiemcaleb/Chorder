@@ -42,9 +42,14 @@ export class SongEditorComponent implements OnInit {
     this.songComponent.view = ViewMode.LYRICS;
   }
 
-  editFull($event) {
-    $event.preventDefault();
+  editFull($event = null) {
+    if ($event) $event.preventDefault();
     this.songComponent.view = ViewMode.FULL;
+  }
+
+  editInfo($event = null){
+    if ($event) $event.preventDefault();
+    this.songComponent.view = ViewMode.INFO;
   }
 
 }

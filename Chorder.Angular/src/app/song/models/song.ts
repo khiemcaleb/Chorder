@@ -14,5 +14,6 @@ export enum SongMode {
 export enum ViewMode {
   CHORD = "view-chord",
   LYRICS = "view-lyrics",
-  FULL = "view-full"
+  FULL = "view-full",
+  INFO = "view-info"
 }
