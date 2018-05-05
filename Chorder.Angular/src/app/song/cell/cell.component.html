@@ -11,6 +11,5 @@
       <span>{{cell.chord}}</span>
     </ng-template>
   </div>
-
-  <div class="word {{displayMode}}">{{cell.word}}</div>
+<div *ngIf="this.view != ViewMode.CHORD" class="word {{displayMode}}">{{cell.word}}</div>
 </div>
