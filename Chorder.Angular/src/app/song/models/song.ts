@@ -4,6 +4,9 @@ export class Song {
   key: string;
   title: string;
   parts: Part[];
+  // artist: string;
+  // author: string;
+  // year: number;
 }
 
 export enum SongMode {

@@ -45,6 +45,7 @@ export class SongEditorComponent implements OnInit {
   editFull($event = null) {
     if ($event) $event.preventDefault();
     this.songComponent.view = ViewMode.FULL;
+    console.log(JSON.stringify(this.song));
   }
 
   editInfo($event = null){

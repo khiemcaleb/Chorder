@@ -13,7 +13,6 @@ export class SongInfoComponent implements OnInit {
   SongMode: typeof SongMode = SongMode;
   
   constructor() { 
-    console.log(this.song);
   }
 
   ngOnInit() {
