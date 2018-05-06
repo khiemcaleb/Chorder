@@ -3,7 +3,7 @@
   <div class="col-sm-11">
     <input id="title" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext' : mode == SongMode.VIEW,
-        'form-control' : mode == SongMode.EDIT }" value="I just need u">
+        'form-control' : mode == SongMode.EDIT }" [(ngModel)]="song.title">
   </div>
 </div>
 
@@ -12,13 +12,13 @@
   <div class="col-sm-5">
     <input id="key" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" value="F#">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.key">
   </div>
   <label for="artist" class="col-sm-1 col-form-label">Artist</label>
   <div class="col-sm-5">
     <input id="artist" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" value="TobyMac">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.artist">
   </div>
 </div>
 
@@ -27,12 +27,12 @@
   <div class="col-sm-5">
     <input id="author" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" value="Kari Job">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.author">
   </div>
   <label for="year" class="col-sm-1 col-form-label">Year</label>
   <div class="col-sm-5">
     <input id="year" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" value="1999">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.year">
   </div>
 </div>
