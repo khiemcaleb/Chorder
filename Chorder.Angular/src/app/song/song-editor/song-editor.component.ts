@@ -26,10 +26,17 @@ export class SongEditorComponent implements OnInit {
       }
       else {
         this.song = {
-          title: 'My great song',
-          key: 'G',
-          parts: [{ name: "Verse", lines: [], lyrics: '' }]
-        };
+          title: "(No title)",
+          key: "C#",
+          parts: [{
+            lines: [],
+            lyrics: "",
+            name: "Verse"
+          }],
+          artist: "Unknown",
+          author: "Unknown",
+          year: 2018
+        }
       }
     });
   }
@@ -48,7 +55,7 @@ export class SongEditorComponent implements OnInit {
     console.log(JSON.stringify(this.song));
   }
 
-  editInfo($event = null){
+  editInfo($event = null) {
     if ($event) $event.preventDefault();
     this.songComponent.view = ViewMode.INFO;
   }
