@@ -23,7 +23,7 @@ namespace Chorder.Api.Core.Dtos
 
         public int Year { get; set; }
 
-        public ICollection<PartDto> Parts { get; set; }
+        public List<PartDto> Parts { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Chorder.Api.Core.Dtos;
+using Chorder.Api.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chorder.Api.Controllers
@@ -7,10 +8,17 @@ namespace Chorder.Api.Controllers
     [Route("api/[controller]")]
     public class SongsController
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ISongService _songService;
+
+        public SongsController(ISongService songService)
         {
-            return new string[] { "value1", "value2" };
+            _songService = songService;
+        }
+
+        [HttpGet]
+        public IEnumerable<SongDto> Get()
+        {
+            return new SongDto[] { null };
         }
 
         [HttpGet("{id}")]
@@ -20,9 +28,9 @@ namespace Chorder.Api.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]SongDto value)
+        public void Post([FromBody]SongDto songDto)
         {
-               
+            var dto = _songService.CreateSong(songDto);
         }
 
         [HttpPut("{id}")]

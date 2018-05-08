@@ -15,7 +15,6 @@ namespace Chorder.Api.Core.Dtos
         [StringLength(1000)]
         public string Lyrics { get; set; }
 
-        [StringLength(4000)]
-        public string Lines { get; set; }
+        public dynamic Lines { get; set; }
     }
 }
