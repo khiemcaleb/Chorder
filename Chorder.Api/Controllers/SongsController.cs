@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Chorder.Api.Core.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chorder.Api.Controllers
@@ -19,8 +20,9 @@ namespace Chorder.Api.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]SongDto value)
         {
+               
         }
 
         [HttpPut("{id}")]

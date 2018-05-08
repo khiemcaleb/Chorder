@@ -1,12 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Chorder.Api.Core.Entities
+namespace Chorder.Api.Core.Dtos
 {
-    public class Part
+    public class PartDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int Id { get; set; }
 
         [Required]
@@ -19,11 +17,5 @@ namespace Chorder.Api.Core.Entities
 
         [StringLength(4000)]
         public string Lines { get; set; }
-
-        [Required]
-        public int SongId { get; set; } 
-        public virtual Song Song { get; set; }
-        
-
     }
 }

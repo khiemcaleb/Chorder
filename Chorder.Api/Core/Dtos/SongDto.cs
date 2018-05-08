@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Chorder.Api.Core.Entities
+namespace Chorder.Api.Core.Dtos
 {
-    public class Song
+    public class SongDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -18,14 +15,15 @@ namespace Chorder.Api.Core.Entities
         [StringLength(10)]
         public string Key { get; set; }
 
-        public ICollection<Part> Parts { get; set; }
-
         [StringLength(200)]
         public string Artist { get; set; }
-        
+
         [StringLength(200)]
         public string Author { get; set; }
-        
+
         public int Year { get; set; }
+
+        public ICollection<PartDto> Parts { get; set; }
+
     }
 }
