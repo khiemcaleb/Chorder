@@ -28,9 +28,10 @@ namespace Chorder.Api.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]SongDto songDto)
+        public IActionResult Post([FromBody]SongDto songDto)
         {
-            var dto = _songService.CreateSong(songDto);
+            var id = _songService.CreateSong(songDto);
+            return new OkObjectResult(new { id });
         }
 
         [HttpPut("{id}")]
