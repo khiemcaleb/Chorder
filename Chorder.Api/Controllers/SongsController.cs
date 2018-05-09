@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Chorder.Api.Core.Dtos;
 using Chorder.Api.Core.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chorder.Api.Controllers
@@ -48,26 +49,36 @@ namespace Chorder.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (_songService.Update(dto))
-            {
+            if (!_songService.Update(dto))
                 return NotFound();
-            }
+
             return Ok();
         }
 
         [HttpPatch("{id}")]
-        public void Patch()
+        public IActionResult Patch(int id, [FromBody]JsonPatchDocument<SongDto> patch)
         {
+            if (patch == null)
+                return BadRequest();
+            
+            var dto = _songService.GetSongById(id);
+            if (dto == null)
+                return NotFound();
 
+            patch.ApplyTo(dto);
+            if (!_songService.Update(dto))
+                return NotFound();
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (_songService.DeleteSongById(id))
-                return Ok();
+            if (!_songService.DeleteSongById(id))
+                return NotFound();
 
-            return NotFound();
+            return Ok();
         }
     }
 }
