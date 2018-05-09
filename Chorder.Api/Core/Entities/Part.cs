@@ -17,7 +17,7 @@ namespace Chorder.Api.Core.Entities
         [StringLength(1000)]
         public string Lyrics { get; set; }
 
-        [StringLength(4000)]
+        [Column(TypeName = "NVARCHAR(MAX)")]
         public string Lines { get; set; }
 
         [Required]

@@ -4,7 +4,6 @@ namespace Chorder.Api.Core.Services
 {
     public interface ISongService
     {
-        SongDto CreateSong(SongDto songDto);
-
+        int CreateSong(SongDto songDto);
     }
 }
