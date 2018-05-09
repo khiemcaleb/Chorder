@@ -9,5 +9,6 @@ namespace Chorder.Api.Core.Repositories
         Song GetById(int id);
         IEnumerable<Song> Get(int pageSize = 10, int pageNo  = 1);
         void Delete(Song song);
+        void Update(Song song);
     }
 }

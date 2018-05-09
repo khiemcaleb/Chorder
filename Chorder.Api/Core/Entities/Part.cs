@@ -1,5 +1,7 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Chorder.Api.Core.Dtos;
 
 namespace Chorder.Api.Core.Entities
 {
@@ -23,7 +25,12 @@ namespace Chorder.Api.Core.Entities
         [Required]
         public int SongId { get; set; } 
         public virtual Song Song { get; set; }
-        
 
+        internal void Modify(PartDto dto)
+        {
+            Name = dto.Name;
+            Lines = dto.Lines;
+            Lyrics = dto.Lyrics;
+        }
     }
 }

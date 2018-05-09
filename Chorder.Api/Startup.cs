@@ -37,6 +37,7 @@ namespace Chorder.Api
             services.AddTransient<ISongService, SongService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISongRepository, SongRepository>();
+            services.AddTransient<IPartRepository, PartRepository>();
             services.AddTransient<IApplicationDbContext, ApplicationDbContext>();
 
             services.AddAutoMapper();

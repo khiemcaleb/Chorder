@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Chorder.Api.Core.Dtos;
 
 namespace Chorder.Api.Core.Entities
 {
@@ -27,5 +29,14 @@ namespace Chorder.Api.Core.Entities
         public string Author { get; set; }
         
         public int Year { get; set; }
+
+        public void Modify(SongDto dto)
+        {
+            Title = dto.Title;
+            Key = dto.Key;
+            Artist = dto.Artist;
+            Author = dto.Author;
+            Year = dto.Year;
+        }
     }
 }

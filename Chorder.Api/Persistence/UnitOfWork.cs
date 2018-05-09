@@ -9,11 +9,13 @@ namespace Chorder.Api.Persistence
         private readonly ApplicationDbContext _dbContext;
 
         public ISongRepository Songs { get; }
+        public IPartRepository Parts { get; }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             Songs = new SongRepository(dbContext);
+            Parts = new PartRepository(dbContext);
         }
 
         public void Complete()

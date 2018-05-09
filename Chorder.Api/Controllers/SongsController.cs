@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Chorder.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class SongsController
+    public class SongsController : Controller
     {
         private readonly ISongService _songService;
 
@@ -19,7 +19,7 @@ namespace Chorder.Api.Controllers
         public IActionResult Get()
         {
             var dtos = _songService.GetSongs();
-            return new OkObjectResult(dtos);
+            return Ok(dtos);
         }
 
         [HttpGet("{id}")]
@@ -27,20 +27,36 @@ namespace Chorder.Api.Controllers
         {
             var dto = _songService.GetSongById(id);
             if (dto == null)
-                return new NotFoundResult();
+                return NotFound();
 
-            return new OkObjectResult(dto);
+            return Ok(dto);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]SongDto songDto)
+        public IActionResult Post([FromBody]SongDto dto)
         {
-            var id = _songService.CreateSong(songDto);
-            return new OkObjectResult(new { id });
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var id = _songService.CreateSong(dto);
+            return Ok(new { id });
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]SongDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (_songService.Update(dto))
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public void Patch()
         {
 
         }
@@ -49,9 +65,9 @@ namespace Chorder.Api.Controllers
         public IActionResult Delete(int id)
         {
             if (_songService.DeleteSongById(id))
-                return new OkResult();
+                return Ok();
 
-            return new BadRequestResult();
+            return NotFound();
         }
     }
 }
