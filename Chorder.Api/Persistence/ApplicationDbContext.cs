@@ -12,6 +12,7 @@ namespace Chorder.Api.Persistence
         }
 
         public DbSet<Song> Songs { get; set; }
+        public DbSet<Part> Parts { get; set; }
 
     }
 }

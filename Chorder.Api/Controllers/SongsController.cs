@@ -16,15 +16,20 @@ namespace Chorder.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SongDto> Get()
+        public IActionResult Get()
         {
-            return new SongDto[] { null };
+            var dtos = _songService.GetSongs();
+            return new OkObjectResult(dtos);
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var dto = _songService.GetSongById(id);
+            if (dto == null)
+                return new NotFoundResult();
+
+            return new OkObjectResult(dto);
         }
 
         [HttpPost]
@@ -37,11 +42,16 @@ namespace Chorder.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            if (_songService.DeleteSongById(id))
+                return new OkResult();
+
+            return new BadRequestResult();
         }
     }
 }

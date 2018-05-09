@@ -26,5 +26,30 @@ namespace Chorder.Api.Services
             _uow.Complete();
             return song.Id;
         }
+
+        public bool DeleteSongById(int id)
+        {
+            var song = _uow.Songs.GetById(id);
+            if (song != null)
+            {
+                _uow.Songs.Delete(song);
+                _uow.Complete();
+                return true;
+            }
+            
+            return false;
+        }
+
+        public SongDto GetSongById(int id)
+        {
+            var song = _uow.Songs.GetById(id);
+            return _mapper.Map<SongDto>(song);
+        }
+
+        public IEnumerable<SongDto> GetSongs()
+        {
+            var songs = _uow.Songs.Get();
+            return _mapper.Map<IEnumerable<SongDto>>(songs);
+        }
     }
 }
