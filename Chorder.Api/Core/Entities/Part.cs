@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Chorder.Api.Common.Helpers;
 using Chorder.Api.Core.Dtos;
 using Newtonsoft.Json;
 
@@ -30,7 +31,7 @@ namespace Chorder.Api.Core.Entities
         internal void Modify(PartDto dto)
         {
             Name = dto.Name;
-            Lines = dto.Lines.ToString(Formatting.None);
+            Lines = MappingHelper.StringifyLines(dto.Lines);
             Lyrics = dto.Lyrics;
         }
     }
