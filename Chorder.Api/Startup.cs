@@ -40,6 +40,8 @@ namespace Chorder.Api
             services.AddTransient<IPartRepository, PartRepository>();
             services.AddTransient<IApplicationDbContext, ApplicationDbContext>();
 
+            services.AddCors();
+
             services.AddAutoMapper();
             services.AddMvc();
         }
@@ -52,6 +54,11 @@ namespace Chorder.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin());
+                
             app.UseMvc();
         }
     }
