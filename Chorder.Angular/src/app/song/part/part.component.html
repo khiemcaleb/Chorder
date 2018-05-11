@@ -1,4 +1,12 @@
-<h3 *ngIf="!isEditing; else partNameEditor" [class.editable]="mode == SongMode.EDIT" (click)="onPartNameClick()">{{part.name}}</h3>
+
+<h3 *ngIf="!isEditing; else partNameEditor" [class.editable]="mode == SongMode.EDIT" (click)="onPartNameClick()"> 
+    {{part.name}} 
+</h3>
+        
+<button *ngIf="this.view == ViewMode.LYRICS" type="button" class="close" aria-label="Close" (click)="removePart($event)" >
+    <span aria-hidden="true">&times;</span>
+ </button>
+
 <ng-template #partNameEditor>
     <input [appFocus]="isFocus" type="text" [(ngModel)]="part.name" (blur)="onPartNameBlur()">
 </ng-template>
@@ -13,4 +21,4 @@
     <div *ngSwitchCase="ViewMode.CHORD">
         <app-line *ngFor="let line of part.lines; index as i" [line]="line" [mode]="mode" [view]="view" [index]="i" (tab)="onLineTab($event)"></app-line>
     </div>
-</div>
+   

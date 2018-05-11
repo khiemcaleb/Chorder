@@ -26,13 +26,16 @@ export class SongComponent {
       firstCell.isEditing = true;
     }
   }
-  
+  removePart(partComponent: PartComponent){
+    if(this.song.parts.length > 1)
+      this.song.parts.splice(partComponent.index,1);
+  }
   addPart() {
     this.song.parts.push({
       lines: [],
       lyrics: '', // TODO: Need null validation
       name: 'Part name'
     });
-
+    
   }
 }
