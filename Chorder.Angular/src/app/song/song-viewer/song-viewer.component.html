@@ -1,14 +1,14 @@
-<a routerLink="./edit" >Edit this song</a>
+<a routerLink="./edit">Edit this song</a>
 <app-song [song]="song" [mode]="SongMode.VIEW" [view]="ViewMode.FULL">
     <ul class="nav nav-pills song-view-mode">
         <li class="nav-item">
-            <a class="nav-link" [class.active]="songComponent.view == ViewMode.FULL" (click)="viewFull($event)" href>Full</a>
+            <a class="nav-link" [class.active]="songComponent?.view == ViewMode.FULL" (click)="viewFull($event)" href>Full</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [class.active]="songComponent.view == ViewMode.LYRICS" (click)="viewLyrics($event)" href>Lyrics</a>
+            <a class="nav-link" [class.active]="songComponent?.view == ViewMode.LYRICS" (click)="viewLyrics($event)" href>Lyrics</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [class.active]="songComponent.view == ViewMode.CHORD" (click)="viewChord($event)" href>Chord</a>
+            <a class="nav-link" [class.active]="songComponent?.view == ViewMode.CHORD" (click)="viewChord($event)" href>Chord</a>
         </li>
     </ul>
 </app-song>

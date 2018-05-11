@@ -16,13 +16,16 @@ export class SongEditorComponent implements OnInit {
 
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private songsService: SongsService) {
     this.route.paramMap.subscribe(params => {
       let id = +params.get('id');
       let title = params.get('title');
 
       if (id > 0) {
-        this.song = new SongsService().getSongById(id);
+        songsService.getSongById(id)
+          .subscribe(response => {
+            this.song = response.json();
+          });
       }
       else {
         this.song = {

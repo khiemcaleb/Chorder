@@ -1,11 +1,17 @@
-<span class="badge badge-secondary">{{song.key}}</span>
-<h2> {{song.title}}</h2>
+<div *ngIf="song; else loadingSpinner">
+    <span class="badge badge-secondary">{{song.key}}</span>
+    <h2> {{song.title}}</h2>
 
-<ng-content select=".song-view-mode"></ng-content>
-<div *ngIf="view != ViewMode.INFO; else songInfo">
-    <app-part *ngFor="let part of song.parts;index as i" [part]="part" [mode]="mode" [view]="view" [index]="i" (tab)="onPartTab($event)"></app-part>
-    <button class="btn btn-primary" *ngIf="mode == SongMode.EDIT && view == ViewMode.LYRICS" (click)="addPart()">Add a part</button>
+    <ng-content select=".song-view-mode"></ng-content>
+    <div *ngIf="view != ViewMode.INFO; else songInfo">
+        <app-part *ngFor="let part of song.parts;index as i" [part]="part" [mode]="mode" [view]="view" [index]="i" (tab)="onPartTab($event)"></app-part>
+        <button class="btn btn-primary" *ngIf="mode == SongMode.EDIT && view == ViewMode.LYRICS" (click)="addPart()">Add a part</button>
+    </div>
+    <ng-template #songInfo>
+        <app-song-info [song]="song" [mode]="mode"></app-song-info>
+    </ng-template>
 </div>
-<ng-template #songInfo>
-    <app-song-info [song]="song" [mode]="mode"></app-song-info>
+
+<ng-template #loadingSpinner>
+    Loading song...
 </ng-template>

@@ -1,8 +1,8 @@
 <ul>
-  <li>
-    <a [routerLink]="['/songs', 1, 'How great Thou art']">
-      How great Thou art
-      <span class="badge badge-secondary">C#m</span>
+  <li *ngFor="let song of songs">
+    <a [routerLink]="['/songs', song.id, song.title]">
+      {{song.title}}
+      <span class="badge badge-secondary">{{song.key}}</span>
     </a>
   </li>
 </ul>
