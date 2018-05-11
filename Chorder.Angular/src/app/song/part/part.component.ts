@@ -17,6 +17,7 @@ export class PartComponent {
   @ViewChildren(LineComponent) lineComponents: QueryList<LineComponent>;
 
   @Output() tab = new EventEmitter();
+  @Output() remove = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -51,5 +52,8 @@ export class PartComponent {
     else if (lineComponent.index == this.lineComponents.length - 1) {
       this.tab.emit(this);
     }
+  }
+  removePart(){
+    this.remove.emit(this);
   }
 }
