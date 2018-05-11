@@ -59,7 +59,8 @@ export class PartComponent {
     }
   }
 
-  removePart(){
+  removePart($event){
     this.remove.emit(this);
+    this.change.emit($event);
   }
 }
