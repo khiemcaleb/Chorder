@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Song, SongMode } from '../models/song';
 
 @Component({
@@ -10,12 +10,19 @@ export class SongInfoComponent implements OnInit {
 
   @Input() song: Song;
   @Input() mode: SongMode;
+
+  @Output() change = new EventEmitter();
+
   SongMode: typeof SongMode = SongMode;
   
   constructor() { 
   }
 
   ngOnInit() {
+  }
+
+  onChange($event){
+    this.change.emit($event);
   }
 
 }

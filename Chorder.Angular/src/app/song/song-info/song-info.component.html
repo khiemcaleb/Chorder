@@ -3,7 +3,7 @@
   <div class="col-sm-11">
     <input id="title" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext' : mode == SongMode.VIEW,
-        'form-control' : mode == SongMode.EDIT }" [(ngModel)]="song.title">
+        'form-control' : mode == SongMode.EDIT }" [(ngModel)]="song.title" (change)="onChange($event)">
   </div>
 </div>
 
@@ -12,13 +12,13 @@
   <div class="col-sm-5">
     <input id="key" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.key">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.key" (change)="onChange($event)">
   </div>
   <label for="artist" class="col-sm-1 col-form-label">Artist</label>
   <div class="col-sm-5">
     <input id="artist" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.artist">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.artist" (change)="onChange($event)">
   </div>
 </div>
 
@@ -27,12 +27,12 @@
   <div class="col-sm-5">
     <input id="author" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.author">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.author" (change)="onChange($event)">
   </div>
   <label for="year" class="col-sm-1 col-form-label">Year</label>
   <div class="col-sm-5">
-    <input id="year" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
+    <input id="year" type="number" [readonly]="mode == SongMode.VIEW" [ngClass]="{
         'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.year">
+        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.year" (change)="onChange($event)">
   </div>
 </div>

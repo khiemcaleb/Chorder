@@ -19,6 +19,7 @@ export class LineComponent {
   @Input() index: number;
 
   @Output() tab = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
@@ -34,5 +35,9 @@ export class LineComponent {
       // next line
       this.tab.emit(this);
     }
+  }
+
+  onCellChange($event){
+    this.change.emit($event);
   }
 }

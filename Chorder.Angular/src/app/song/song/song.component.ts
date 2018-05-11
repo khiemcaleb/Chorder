@@ -26,10 +26,17 @@ export class SongComponent {
       firstCell.isEditing = true;
     }
   }
+
+  onChange($event){
+    console.log("SOMETHING CHANGED NEED TO SAVE");
+    $event.stopPropagation();
+  }
+
   removePart(partComponent: PartComponent){
     if(this.song.parts.length > 1)
       this.song.parts.splice(partComponent.index,1);
   }
+
   addPart() {
     this.song.parts.push({
       lines: [],

@@ -15,6 +15,7 @@ export class CellComponent {
   @Input() view: ViewMode;
 
   @Output() tab = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -42,5 +43,9 @@ export class CellComponent {
 
   onChordTab() {
     this.tab.emit(this);
+  }
+
+  onCellChange($event){
+    this.change.emit($event);
   }
 }
