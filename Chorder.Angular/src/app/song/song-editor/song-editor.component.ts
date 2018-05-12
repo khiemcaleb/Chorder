@@ -55,7 +55,10 @@ export class SongEditorComponent implements OnInit {
         });
     }
     else {
-      //update song
+      this.songsService.updateSong(this.song)
+        .subscribe(response => {
+          console.log(response);
+        });
     }
     $event.stopPropagation();
   }

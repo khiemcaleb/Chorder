@@ -15,7 +15,7 @@ export class SongsService {
   }
 
   getSongById(id: number) {
-    return this.http.get(this.url + `/${id}`);
+    return this.http.get(this.url + '/' + id);
   }
 
   createSong(song: Song) {
@@ -24,5 +24,13 @@ export class SongsService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.url, body, options);
+  }
+
+  updateSong(song: Song){
+    let body = JSON.stringify(song);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.url + '/' + song.id, body, options);
   }
 }
