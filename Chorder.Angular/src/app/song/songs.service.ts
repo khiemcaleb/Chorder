@@ -33,4 +33,8 @@ export class SongsService {
 
     return this.http.put(this.url + '/' + song.id, body, options);
   }
+
+  deleteSong(id: number){
+    return this.http.delete(this.url + '/' + id);
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SongComponent } from '../song/song.component';
 import { SongsService } from '../songs.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Song, SongMode, ViewMode } from '../models/song';
 
 @Component({
@@ -16,7 +16,7 @@ export class SongViewerComponent implements OnInit {
 
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute, private songsService: SongsService) {
+  constructor(private route: ActivatedRoute, private songsService: SongsService, private router: Router) {
     
   }
 
@@ -51,6 +51,13 @@ export class SongViewerComponent implements OnInit {
   viewChord($event) {
     $event.preventDefault();
     this.songComponent.view = ViewMode.CHORD;
+  }
+
+  deleteSong(){
+    this.songsService.deleteSong(this.song.id)
+      .subscribe(response =>{
+        this.router.navigate(['/songs']);
+      });
   }
 
 }
