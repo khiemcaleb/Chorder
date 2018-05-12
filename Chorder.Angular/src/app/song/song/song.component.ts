@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { SongsService } from '../songs.service';
 import { Song, SongMode, ViewMode } from '../models/song';
 import { PartComponent } from '../part/part.component';
@@ -12,6 +12,8 @@ export class SongComponent {
   @Input() song: Song;
   @Input() mode: SongMode;
   @Input() view: ViewMode;
+
+  @Output() change = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
@@ -28,8 +30,8 @@ export class SongComponent {
   }
 
   onChange($event){
-    console.log("SOMETHING CHANGED NEED TO SAVE");
-    $event.stopPropagation();
+    this.change.emit($event);
+
   }
 
   removePart(partComponent: PartComponent){

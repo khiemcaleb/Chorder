@@ -1,4 +1,4 @@
-<app-song [song]="song" [mode]="SongMode.EDIT" [view]="ViewMode.LYRICS">
+<app-song [song]="song" [mode]="SongMode.EDIT" [view]="ViewMode.LYRICS" (change)="onSongChange($event)">
     <ul class="nav nav-pills song-view-mode">
         <li class="nav-item">
             <a  class="nav-link" [class.active]="songComponent.view == ViewMode.INFO" (click)="editInfo($event)" href>Info</a>

@@ -1,6 +1,7 @@
 import { Part } from "./part";
 
 export class Song {
+  id: number;
   key: string;
   title: string;
   parts: Part[];

@@ -16,35 +16,48 @@ export class SongEditorComponent implements OnInit {
 
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute, private songsService: SongsService) {
+  constructor(private route: ActivatedRoute, private songsService: SongsService) { }
+
+  ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let id = +params.get('id');
       let title = params.get('title');
 
       if (id > 0) {
-        songsService.getSongById(id)
+        this.songsService.getSongById(id)
           .subscribe(response => {
             this.song = response.json();
           });
       }
       else {
         this.song = {
-          title: "(No title)",
+          id: 0,
+          title: "Your song title",
           key: "C#",
           parts: [{
             lines: [],
             lyrics: "",
             name: "Verse"
           }],
-          artist: "Unknown",
-          author: "Unknown",
+          artist: "",
+          author: "",
           year: 2018
         }
       }
     });
   }
 
-  ngOnInit() {
+  onSongChange($event) {
+    if (this.song.id == 0) {
+      this.songsService.createSong(this.song)
+        .subscribe(response => {
+          this.song.id = response.json().id;
+        });
+    }
+    else {
+      //update song
+    }
+    $event.stopPropagation();
   }
 
   editLyrics($event = null) {
