@@ -3,7 +3,7 @@
     {{part.name}} 
 </h3>
         
-<button *ngIf="this.view == ViewMode.LYRICS" type="button" class="close" aria-label="Close" (click)="removePart($event)" >
+<button *ngIf="this.view == ViewMode.LYRICS && mode == SongMode.EDIT " type="button" class="close" aria-label="Close" (click)="removePart($event)" >
     <span aria-hidden="true">&times;</span>
  </button>
 
@@ -13,12 +13,23 @@
 
 <div [ngSwitch]="view">
     <div *ngSwitchCase="ViewMode.FULL">
-        <app-line *ngFor="let line of part.lines; index as i" [line]="line" [mode]="mode" [view]="view" [index]="i" (tab)="onLineTab($event)"></app-line>
+        <app-line *ngFor="let line of part.lines; index as i" 
+        [line]="line" 
+        [mode]="mode" 
+        [view]="view" 
+        [index]="i" 
+        (tab)="onLineTab($event)"
+        (left)="pressLeftArrow($event)" ></app-line>
     </div>
     <div *ngSwitchCase="ViewMode.LYRICS">
         <app-lyrics [part]="part" [mode]="mode"></app-lyrics>
     </div>
     <div *ngSwitchCase="ViewMode.CHORD">
-        <app-line *ngFor="let line of part.lines; index as i" [line]="line" [mode]="mode" [view]="view" [index]="i" (tab)="onLineTab($event)"></app-line>
+        <app-line *ngFor="let line of part.lines; index as i" 
+        [line]="line" 
+        [mode]="mode" 
+        [view]="view" 
+        [index]="i" 
+         ></app-line>
     </div>
    

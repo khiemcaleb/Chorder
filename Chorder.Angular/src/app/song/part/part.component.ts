@@ -56,4 +56,13 @@ export class PartComponent {
   removePart(){
     this.remove.emit(this);
   }
+  pressLeftArrow(lineComponent: LineComponent){
+    if (lineComponent.index > 0){
+      var previousLineComponent = this.lineComponents.toArray()[lineComponent.index - 1];
+      var lastCell = previousLineComponent.cellComponents.last; // last cell of privious line
+      var firstCell = lineComponent.cellComponents.first; // first cell of now line
+      firstCell.isFocus = false;
+      lastCell.isEditing = true;
+    }
+  }
 }

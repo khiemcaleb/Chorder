@@ -19,9 +19,22 @@ export class LineComponent {
   @Input() index: number;
 
   @Output() tab = new EventEmitter();
+  @Output() left = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
+
+  pressLeftArrow(cellComponent: CellComponent){
+    if (cellComponent.index > 0){
+      var previousCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index - 1]
+        cellComponent.isFocus = false;
+        previousCellComponent.isEditing = true;
+    }
+    else if (cellComponent.index == 0){
+      //previous line
+      this.left.emit(this); 
+    }
+  }
 
   onCellTab(cellComponent: CellComponent) {
     if (cellComponent.index < this.cellComponents.length - 1) {
