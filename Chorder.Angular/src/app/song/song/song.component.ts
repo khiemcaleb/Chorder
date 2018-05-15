@@ -31,7 +31,6 @@ export class SongComponent {
 
   onChange($event){
     this.change.emit($event);
-
   }
 
   removePart(partComponent: PartComponent){

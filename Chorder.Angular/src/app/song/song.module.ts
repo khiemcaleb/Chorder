@@ -15,6 +15,7 @@ import { SongManagerComponent } from './song-manager/song-manager.component';
 import { SongViewerComponent } from './song-viewer/song-viewer.component';
 import { SongComponent } from './song/song.component';
 import { SongsService } from './songs.service';
+import { SongHeaderComponent } from './song-header/song-header.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SongsService } from './songs.service';
     FocusDirective,
     SongEditorComponent,
     SongViewerComponent,
-    SongInfoComponent
+    SongInfoComponent,
+    SongHeaderComponent
   ],
   imports: [
     CommonModule,

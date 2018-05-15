@@ -1,6 +1,6 @@
 <div *ngIf="song; else loadingSpinner">
-    <span class="badge badge-secondary">{{song.key}}</span>
-    <h2> {{song.title}}</h2>
+    
+    <app-song-header [song]="song"></app-song-header>
 
     <ng-content select=".song-view-mode"></ng-content>
     <div *ngIf="view != ViewMode.INFO; else songInfo">
@@ -10,11 +10,13 @@
             [view]="view" 
             [index]="i" 
             (tab)="onPartTab($event)"
-            (remove)="removePart($event)"
-            (change)="onChange($event)"
-            >
+            (remove)="removePart($event)" 
+            (change)="onChange($event)">
         </app-part>
-        <button class="btn btn-primary" *ngIf="mode == SongMode.EDIT && view == ViewMode.LYRICS" (click)="addPart()">Add a part</button>
+        
+        <button class="btn btn-primary" 
+            *ngIf="mode == SongMode.EDIT && view == ViewMode.LYRICS" 
+            (click)="addPart()">Add a part</button>
     </div>
     <ng-template #songInfo>
         <app-song-info [song]="song" [mode]="mode" (change)="onChange($event)"></app-song-info>
