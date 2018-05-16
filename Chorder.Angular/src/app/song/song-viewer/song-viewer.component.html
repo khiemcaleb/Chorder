@@ -1,5 +1,6 @@
-<a routerLink="./edit" class="btn btn-primary">Edit</a>
-<button class="btn btn-default" (click)="deleteSong()">Delete</button>
+<button mat-button routerLink="./edit" color="primary">Edit</button>
+<button mat-button (click)="deleteSong()">Delete</button>
+
 <app-song [song]="song" [mode]="SongMode.VIEW" [view]="ViewMode.FULL">
     <ul class="nav nav-pills song-view-mode">
         <li class="nav-item">

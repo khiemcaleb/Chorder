@@ -1,5 +1,5 @@
-<div class="key" (click)="onKeyClick($event)">
-  <div *ngIf="isEditingKey; then keyEditor else keyReader"></div>
+<!-- <div class="key" (click)="onKeyClick($event)">
+  <div *ngIf="isEditingKey && mode==SongMode.EDIT; then keyEditor else keyReader"></div>
   <ng-template #keyEditor>
     <input type="text" class="form-control" [(ngModel)]="song.key" (blur)="onKeyBlur($event)" [appFocus]="isFocus">
   </ng-template>
@@ -10,7 +10,7 @@
 </div>
 
 <div class="title" (click)="onTitleClick($event)">
-  <div *ngIf="isEditingTitle; then titleEditor else titleReader"></div>
+  <div *ngIf="isEditingTitle && mode==SongMode.EDIT; then titleEditor else titleReader"></div>
 
   <ng-template #titleEditor>
     <input type="text" class="form-control" [(ngModel)]="song.title" (blur)="onTitleBlur($event)" [appFocus]="isFocus">
@@ -18,4 +18,15 @@
   <ng-template #titleReader>
     <h2 class="editable">{{song.title}}</h2>
   </ng-template>
-</div>
+</div> -->
+
+<div *ngIf="isEditing && mode == SongMode.EDIT; then headerEditor else headerReader"></div>
+<ng-template #headerEditor>
+  <input type="text" class="form-control" [(ngModel)]="song.key"  [appFocus]="isFocus">
+  <input type="text" class="form-control" [(ngModel)]="song.title" [appFocus]="isFocus">
+</ng-template>
+<ng-template #headerReader>
+  <h2>
+    <span [matBadge]="song.key" matBadgeOverlap="false" (click)="onHeaderClick($event)">{{song.title}}</span>
+  </h2>
+</ng-template>

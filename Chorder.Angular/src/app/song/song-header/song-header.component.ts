@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Song } from '../models/song';
+import { Song, SongMode, ViewMode } from '../models/song';
 
 @Component({
   selector: 'app-song-header',
@@ -9,9 +9,13 @@ import { Song } from '../models/song';
 export class SongHeaderComponent implements OnInit {
 
   @Input() song: Song;
+  @Input() mode: SongMode;
+  @Input() view: ViewMode;
 
-  isEditingKey: boolean = false;
-  isEditingTitle: boolean = false;
+  SongMode: typeof SongMode = SongMode;
+  ViewMode: typeof ViewMode = ViewMode;
+
+  isEditing: boolean = false;
   isFocus: boolean = true;
 
   constructor() { }
@@ -19,26 +23,21 @@ export class SongHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onKeyClick($event) {
-    if (!this.isEditingKey)
-      this.isEditingKey = true;
+  onHeaderClick($event) {
+    if (!this.isEditing)
+      this.isEditing = true;
   }
 
-  onTitleClick($event) {
-    if (!this.isEditingTitle)
-      this.isEditingTitle = true;
-  }
+  // onKeyBlur($event) {
+  //   if (this.isEditingKey)
+  //     this.isEditingKey = false;
+  //   $event.preventDefault();
+  // }
 
-  onKeyBlur($event) {
-    if (this.isEditingKey)
-      this.isEditingKey = false;
-    $event.preventDefault();
-  }
-
-  onTitleBlur($event) {
-    if (this.isEditingTitle)
-      this.isEditingTitle = false;
-    $event.preventDefault();
-  }
+  // onTitleBlur($event) {
+  //   if (this.isEditingTitle)
+  //     this.isEditingTitle = false;
+  //   $event.preventDefault();
+  // }
 
 }

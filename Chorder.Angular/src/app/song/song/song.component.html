@@ -1,6 +1,6 @@
 <div *ngIf="song; else loadingSpinner">
     
-    <app-song-header [song]="song"></app-song-header>
+    <app-song-header [song]="song" [mode]="mode"></app-song-header>
 
     <ng-content select=".song-view-mode"></ng-content>
     <div *ngIf="view != ViewMode.INFO; else songInfo">
@@ -24,5 +24,5 @@
 </div>
 
 <ng-template #loadingSpinner>
-    Loading song...
+    <mat-spinner></mat-spinner>
 </ng-template>
