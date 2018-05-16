@@ -18,6 +18,7 @@ export class PartComponent {
 
   @Output() tab = new EventEmitter();
   @Output() remove = new EventEmitter();
+  @Output() left = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -63,6 +64,9 @@ export class PartComponent {
       var firstCell = lineComponent.cellComponents.first; // first cell of now line
       firstCell.isFocus = false;
       lastCell.isEditing = true;
+    }
+    else if (lineComponent.index == 0){
+      this.left.emit(this);
     }
   }
 }
