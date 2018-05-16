@@ -7,9 +7,10 @@
       <input 
       [(ngModel)]="cell.chord" 
       (focusout)="onChordBlur()" 
-      (keydown.ArrowLeft) = "pressLeftArrow()"
+      (keydown.ArrowLeft)="pressLeftArrow()"
       (keydown.tab)="onChordTab()" 
-      [appFocus]="isFocus">
+      [appFocus]="isFocus"
+      (keydown.ArrowRight)="pressRightArrow()">
     </ng-template>
 
     <ng-template #chordReader>

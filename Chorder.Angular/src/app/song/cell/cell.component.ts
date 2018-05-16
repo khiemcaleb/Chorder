@@ -16,6 +16,7 @@ export class CellComponent {
 
   @Output() tab = new EventEmitter();
   @Output() left = new EventEmitter();
+  @Output() right = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -45,5 +46,8 @@ export class CellComponent {
   }
   onChordTab() {
     this.tab.emit(this);
+  }
+  pressRightArrow(){
+    this.right.emit(this);
   }
 }

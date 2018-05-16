@@ -32,6 +32,18 @@ export class SongComponent {
       this.song.parts.splice(partComponent.index,1);
   }
 
+  pressArrowRight(partComponent: PartComponent){
+    if (partComponent.index < this.partComponents.length - 1) {
+      var nextPartComponent = this.partComponents.toArray()[partComponent.index + 1];
+      var firstCell = nextPartComponent.lineComponents.first.cellComponents.first;// first cell of next part
+      var lastCell = partComponent.lineComponents.last.cellComponents.last;//last cell of now part
+      lastCell.isFocus = false;
+      lastCell.isEditing = false;
+      firstCell.isFocus = true;
+      firstCell.isEditing = true;
+    }
+  }
+
   pressArrowLeft(partComponent: PartComponent){
     if(partComponent.index > 0){
       var previouspart = this.partComponents.toArray()[partComponent.index - 1]

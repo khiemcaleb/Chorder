@@ -19,7 +19,8 @@
         [view]="view" 
         [index]="i" 
         (tab)="onLineTab($event)"
-        (left)="pressLeftArrow($event)" ></app-line>
+        (left)="pressLeftArrow($event)"
+        (right)="pressRightArrow($event)" ></app-line>
     </div>
     <div *ngSwitchCase="ViewMode.LYRICS">
         <app-lyrics [part]="part" [mode]="mode"></app-lyrics>

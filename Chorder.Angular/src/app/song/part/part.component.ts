@@ -2,6 +2,7 @@ import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter
 import { Part } from '../models/part';
 import { LineComponent } from '../line/line.component';
 import { SongMode, ViewMode } from '../models/song';
+import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-part',
@@ -19,6 +20,7 @@ export class PartComponent {
   @Output() tab = new EventEmitter();
   @Output() remove = new EventEmitter();
   @Output() left = new EventEmitter();
+  @Output() right = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -54,9 +56,11 @@ export class PartComponent {
       this.tab.emit(this);
     }
   }
+
   removePart(){
     this.remove.emit(this);
   }
+
   pressLeftArrow(lineComponent: LineComponent){
     if (lineComponent.index > 0){
       var previousLineComponent = this.lineComponents.toArray()[lineComponent.index - 1];
@@ -67,6 +71,21 @@ export class PartComponent {
     }
     else if (lineComponent.index == 0){
       this.left.emit(this);
+    }
+  }
+
+  pressRightArrow(lineComponent: LineComponent){
+    if (lineComponent.index < this.lineComponents.length - 1) {
+      var nextLineComponent = this.lineComponents.toArray()[lineComponent.index + 1];
+      var firstCell = nextLineComponent.cellComponents.first;// first cell of next line
+      var lastCell = lineComponent.cellComponents.last;// last cell of now line
+      lastCell.isFocus = false;
+      lastCell.isEditing = false;
+      firstCell.isFocus = true;
+      firstCell.isEditing = true;
+    }
+    else if (lineComponent.index == this.lineComponents.length - 1) {
+      this.right.emit(this);
     }
   }
 }
