@@ -1,10 +1,15 @@
-<ul>
-  <li *ngFor="let song of songs">
-    <a [routerLink]="['/songs', song.id, song.title]">
-      {{song.title}}
-      <span class="badge badge-secondary">{{song.key}}</span>
-    </a>
-  </li>
-</ul>
+<div *ngIf="songs; else loadingSpinner">
+  <ul>
+    <li *ngFor="let song of songs">
+      <a [routerLink]="['/songs', song.id, song.title]">
+        {{song.title}}
+        <span class="badge badge-secondary">{{song.key}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<ng-template #loadingSpinner>
+  <mat-spinner></mat-spinner>
+</ng-template>
 
-<a class='btn btn-primary' [routerLink]="['/songs', 0, 'new-song', 'edit']">Add new song</a>
+<button mat-raised-button color="primary" [routerLink]="['/songs', 0, 'new-song', 'edit']">Add a song</button>
