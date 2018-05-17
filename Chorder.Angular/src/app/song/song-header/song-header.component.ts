@@ -28,6 +28,12 @@ export class SongHeaderComponent implements OnInit {
       this.isEditing = true;
   }
 
+  onBlur($event) {
+    if (this.isEditing)
+      this.isEditing = false;
+    $event.preventDefault();
+  }
+
   // onKeyBlur($event) {
   //   if (this.isEditingKey)
   //     this.isEditingKey = false;
