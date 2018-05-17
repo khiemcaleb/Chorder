@@ -1,38 +1,18 @@
-<!-- <div class="key" (click)="onKeyClick($event)">
-  <div *ngIf="isEditingKey && mode==SongMode.EDIT; then keyEditor else keyReader"></div>
-  <ng-template #keyEditor>
-    <input type="text" class="form-control" [(ngModel)]="song.key" (blur)="onKeyBlur($event)" [appFocus]="isFocus">
-  </ng-template>
-  <ng-template #keyReader>
-    <span class="editable" class="badge badge-secondary">{{song.key}}</span>
-  </ng-template>
-
-</div>
-
-<div class="title" (click)="onTitleClick($event)">
-  <div *ngIf="isEditingTitle && mode==SongMode.EDIT; then titleEditor else titleReader"></div>
-
-  <ng-template #titleEditor>
-    <input type="text" class="form-control" [(ngModel)]="song.title" (blur)="onTitleBlur($event)" [appFocus]="isFocus">
-  </ng-template>
-  <ng-template #titleReader>
-    <h2 class="editable">{{song.title}}</h2>
-  </ng-template>
-</div> -->
-
 <div *ngIf="isEditing && mode == SongMode.EDIT; then headerEditor else headerReader"></div>
 <ng-template #headerEditor>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Key" [(ngModel)]="song.key" [appFocus]="true">
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Key" [(ngModel)]="song.key" [appFocus]="true">
+  </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Title" [(ngModel)]="song.title" (blur)="onBlur($event)">
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Title" [(ngModel)]="song.title" (blur)="onBlur($event)">
+  </mat-form-field>
 
 </ng-template>
 <ng-template #headerReader>
-  <h2>
+  <h2 [ngClass]="{
+    'editable': mode == SongMode.EDIT && !isEditing,
+    'readonly': mode == SongMode.VIEW }">
     <span [matBadge]="song.key" matBadgeOverlap="false" (click)="onHeaderClick($event)">{{song.title}}</span>
   </h2>
 </ng-template>

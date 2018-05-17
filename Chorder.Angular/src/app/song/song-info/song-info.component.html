@@ -1,26 +1,13 @@
-<div class="form-group row">
-  <label for="artist" class="col-sm-1 col-form-label">Artist</label>
-  <div class="col-sm-11">
-    <input id="artist" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
-        'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.artist" (change)="onChange($event)">
-  </div>
-</div>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Artist" id="artist" type="text" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.artist"
+    (change)="onChange($event)">
+</mat-form-field>
 
-<div class="form-group row">
-  <label for="author" class="col-sm-1 col-form-label">Author</label>
-  <div class="col-sm-11">
-    <input id="author" type="text" [readonly]="mode == SongMode.VIEW" [ngClass]="{
-        'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.author" (change)="onChange($event)">
-  </div>  
-</div>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Author" id="author" type="text" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.author"
+    (change)="onChange($event)">
+</mat-form-field>
 
-<div class="form-group row">
-  <label for="year" class="col-sm-1 col-form-label">Year</label>
-  <div class="col-sm-11">
-    <input id="year" type="number" [readonly]="mode == SongMode.VIEW" [ngClass]="{
-        'form-control-plaintext': mode == SongMode.VIEW,
-        'form-control': mode == SongMode.EDIT}" [(ngModel)]="song.year" (change)="onChange($event)">
-  </div>
-</div>
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Year" id="year" type="number" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.year" (change)="onChange($event)">
+  </mat-form-field>

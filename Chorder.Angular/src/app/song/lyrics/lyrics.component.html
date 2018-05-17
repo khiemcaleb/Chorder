@@ -3,12 +3,10 @@
 </div>
 
 <ng-template #lyricsEditor>
-    <textarea 
-        (focusout)="onLyricsBlur()" 
-        [appFocus]="isFocus" 
-        [(ngModel)]="part.lyrics" 
-        (change)="onLyricsChange($event)">
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Lyrics" rows="5" (focusout)="onLyricsBlur()" [appFocus]="isFocus" [(ngModel)]="part.lyrics" (change)="onLyricsChange($event)">
     </textarea>
+    </mat-form-field>
 </ng-template>
 
 <ng-template #lyricsReader>
