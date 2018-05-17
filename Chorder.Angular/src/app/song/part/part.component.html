@@ -10,6 +10,7 @@
     <input [appFocus]="isFocus" type="text" [(ngModel)]="part.name" (blur)="onPartNameBlur()" (change)="onChange($event)">
 </ng-template>
 
+
 <div [ngSwitch]="view">
     <div *ngSwitchCase="ViewMode.FULL">
         <app-line *ngFor="let line of part.lines; index as i" [line]="line" [mode]="mode" [view]="view" [index]="i" (tab)="onLineTab($event)" (change)="onChange($event)"></app-line>
@@ -20,4 +21,5 @@
     <div *ngSwitchCase="ViewMode.CHORD">
         <app-line *ngFor="let line of part.lines; index as i" [line]="line" [mode]="mode" [view]="view" [index]="i" (tab)="onLineTab($event)" (change)="onChange($event)"></app-line>
     </div>
+    <div *ngSwitchCase="ViewMode.NONE"></div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { SongComponent } from '../song/song.component';
 import { SongsService } from '../songs.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,9 +14,15 @@ export class SongViewerComponent implements OnInit {
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
 
+  lyricsCheck: boolean = true;
+  chordCheck: boolean = true;
+
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute, private songsService: SongsService, private router: Router) {
+  constructor(private route: ActivatedRoute, 
+    private songsService: SongsService, 
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef) {
     
   }
 
@@ -38,19 +44,31 @@ export class SongViewerComponent implements OnInit {
     });
   }
 
-  viewFull($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.FULL;
+  onLyricsCheck($event){
+    this.lyricsCheck = $event.source.checked;
+    this.renderView();
   }
 
-  viewLyrics($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.LYRICS;
+  onChordCheck($event){
+    this.chordCheck = $event.source.checked;
+    this.renderView();
   }
 
-  viewChord($event) {
-    $event.preventDefault();
-    this.songComponent.view = ViewMode.CHORD;
+  renderView(){
+    if (this.lyricsCheck == this.chordCheck){
+      if (this.lyricsCheck)
+        this.songComponent.view = ViewMode.FULL;
+      else
+        this.songComponent.view = ViewMode.NONE;
+    }
+    else if (this.lyricsCheck){
+      this.songComponent.view = ViewMode.LYRICS;
+    }
+    else{
+      this.songComponent.view = ViewMode.CHORD;
+    }
+
+    console.log({lyrics: this.lyricsCheck, chord: this.chordCheck});
   }
 
   deleteSong(){

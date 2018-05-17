@@ -2,15 +2,10 @@
 <button mat-button (click)="deleteSong()">Delete</button>
 
 <app-song [song]="song" [mode]="SongMode.VIEW" [view]="ViewMode.FULL">
-    <ul class="nav nav-pills song-view-mode">
-        <li class="nav-item">
-            <a class="nav-link" [class.active]="songComponent?.view == ViewMode.FULL" (click)="viewFull($event)" href>Full</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [class.active]="songComponent?.view == ViewMode.LYRICS" (click)="viewLyrics($event)" href>Lyrics</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [class.active]="songComponent?.view == ViewMode.CHORD" (click)="viewChord($event)" href>Chord</a>
-        </li>
-    </ul>
+    <div class="song-view-mode">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple>
+            <mat-button-toggle checked="lyricsCheck" (change)="onLyricsCheck($event)">Lyrics</mat-button-toggle>
+            <mat-button-toggle checked="chordCheck" (change)="onChordCheck($event)">Chord</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
 </app-song>
