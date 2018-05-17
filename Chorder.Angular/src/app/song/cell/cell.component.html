@@ -1,5 +1,5 @@
 <div class="cell" [ngClass]="{
-    'editable': mode == SongMode.EDIT,
+    'editable': mode == SongMode.EDIT && !isEditing,
     'readonly': mode == SongMode.VIEW }" (click)="onCellClick()">
   <div class="chord">
     <div *ngIf="isEditing; then chordEditor else chordReader"></div>
@@ -17,5 +17,5 @@
       <span>{{cell.chord}}</span>
     </ng-template>
   </div>
-<div *ngIf="this.view != ViewMode.CHORD" class="word {{displayMode}}">{{cell.word}}</div>
+  <div *ngIf="this.view != ViewMode.CHORD" class="word {{displayMode}}">{{cell.word}}</div>
 </div>

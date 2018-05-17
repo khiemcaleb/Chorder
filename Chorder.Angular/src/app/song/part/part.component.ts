@@ -21,6 +21,7 @@ export class PartComponent {
   @Output() remove = new EventEmitter();
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -45,6 +46,10 @@ export class PartComponent {
     }
   }
 
+  onChange($event){
+    this.change.emit($event);
+  }
+
   onLineTab(lineComponent: LineComponent) {
     if (lineComponent.index < this.lineComponents.length - 1) {
       var nextLineComponent = this.lineComponents.toArray()[lineComponent.index + 1];
@@ -57,8 +62,9 @@ export class PartComponent {
     }
   }
 
-  removePart(){
+  removePart($event){
     this.remove.emit(this);
+    this.change.emit($event);
   }
 
   pressLeftArrow(lineComponent: LineComponent){
