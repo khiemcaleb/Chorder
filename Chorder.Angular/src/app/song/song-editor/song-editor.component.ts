@@ -63,19 +63,24 @@ export class SongEditorComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  editLyrics($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.LYRICS;
-  }
+  onStepSelect($event) {
+    console.log($event);
+    switch ($event.selectedIndex) {
+      case 0:
+        this.songComponent.view = ViewMode.LYRICS;
+        break;
 
-  editFull($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.FULL;
-  }
+      case 1:
+        this.songComponent.view = ViewMode.FULL;
+        break;
 
-  editInfo($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.INFO;
+      case 2:
+        this.songComponent.view = ViewMode.INFO;
+        break;
+
+      default:
+        break;
+    }
   }
 
 }
