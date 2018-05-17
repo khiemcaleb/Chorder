@@ -2,7 +2,6 @@ import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter
 import { SongsService } from '../songs.service';
 import { Song, SongMode, ViewMode } from '../models/song';
 import { PartComponent } from '../part/part.component';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-song',

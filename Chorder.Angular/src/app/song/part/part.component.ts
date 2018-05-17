@@ -2,7 +2,6 @@ import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter
 import { Part } from '../models/part';
 import { LineComponent } from '../line/line.component';
 import { SongMode, ViewMode } from '../models/song';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-part',
