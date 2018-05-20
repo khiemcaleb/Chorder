@@ -22,6 +22,7 @@ export class LineComponent {
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
   @Output() down = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
@@ -67,5 +68,9 @@ export class LineComponent {
     }
 
    
+  }
+
+  onCellChange($event){
+    this.change.emit($event);
   }
 }

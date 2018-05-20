@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { SongsService } from '../songs.service';
 import { Song, SongMode, ViewMode } from '../models/song';
 import { PartComponent } from '../part/part.component';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-song',
@@ -13,6 +12,8 @@ export class SongComponent {
   @Input() song: Song;
   @Input() mode: SongMode;
   @Input() view: ViewMode;
+
+  @Output() change = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
@@ -27,6 +28,11 @@ export class SongComponent {
       firstCell.isEditing = true;
     }
   }
+
+  onChange($event){
+    this.change.emit($event);
+  }
+
   removePart(partComponent: PartComponent){
     if(this.song.parts.length > 1)
       this.song.parts.splice(partComponent.index,1);

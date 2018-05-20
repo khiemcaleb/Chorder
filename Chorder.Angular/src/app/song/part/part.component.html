@@ -1,15 +1,17 @@
-
-<h3 *ngIf="!isEditing; else partNameEditor" [class.editable]="mode == SongMode.EDIT" (click)="onPartNameClick()"> 
-    {{part.name}} 
+<h3 *ngIf="!isEditing; else partNameEditor" [class.editable]="mode == SongMode.EDIT" (click)="onPartNameClick()">
+    {{part.name}}
 </h3>
         
 <button *ngIf="this.view == ViewMode.LYRICS && mode == SongMode.EDIT " type="button" class="close" aria-label="Close" (click)="removePart($event)" >
     <span aria-hidden="true">&times;</span>
- </button>
+</button>
 
 <ng-template #partNameEditor>
-    <input [appFocus]="isFocus" type="text" [(ngModel)]="part.name" (blur)="onPartNameBlur()">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Part" [appFocus]="isFocus" [(ngModel)]="part.name" (blur)="onPartNameBlur()" (change)="onChange($event)">
+    </mat-form-field>
 </ng-template>
+
 
 <div [ngSwitch]="view">
     <div *ngSwitchCase="ViewMode.FULL">
@@ -21,10 +23,11 @@
         (tab)="onLineTab($event)"
         (left)="pressLeftArrow($event)"
         (right)="pressRightArrow($event)"
-        (down)="pressDownArrow($event)"></app-line>
+        (down)="pressDownArrow($event)"
+        (change)="onChange($event)"></app-line>
     </div>
     <div *ngSwitchCase="ViewMode.LYRICS">
-        <app-lyrics [part]="part" [mode]="mode"></app-lyrics>
+        <app-lyrics [part]="part" [mode]="mode" (change)="onChange($event)"></app-lyrics>
     </div>
     <div *ngSwitchCase="ViewMode.CHORD">
         <app-line *ngFor="let line of part.lines; index as i" 
@@ -32,6 +35,8 @@
         [mode]="mode" 
         [view]="view" 
         [index]="i" 
-         ></app-line>
+        (tab)="onLineTab($event)"
+        (change)="onChange($event)"></app-line>
     </div>
-   
+    <div *ngSwitchCase="ViewMode.NONE"></div>
+</div>

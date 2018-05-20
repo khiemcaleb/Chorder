@@ -1,6 +1,11 @@
-.lyrics textarea {
+.lyrics {
     width: 100%;
-    height:150px;
+    min-height: 100px;
+}
+
+.example-full-width {
+    width: 100%;
+    min-height: 100px;
 }
 
 .lyrics.editable:hover{

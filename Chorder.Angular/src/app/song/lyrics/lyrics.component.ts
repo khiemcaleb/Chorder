@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SongMode, ViewMode } from '../models/song';
 import { Part } from '../models/part';
 import { Line } from '../models/line';
@@ -12,6 +12,8 @@ export class LyricsComponent implements OnInit {
 
   @Input() part: Part;
   @Input() mode: SongMode;
+
+  @Output() change = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -44,10 +46,10 @@ export class LyricsComponent implements OnInit {
       this.isFocus = true;
   }
 
-  onLyricsChange(){
+  onLyricsChange($event){
     this.part.lyrics = this.beautifyLyrics(this.part.lyrics);
-
     this.part.lines = this.parseLines(this.part.lyrics);
+    this.change.emit($event);
   }
 
   parseLines(text:string){

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { SongComponent } from '../song/song.component';
 import { SongsService } from '../songs.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Song, SongMode, ViewMode } from '../models/song';
 
 @Component({
@@ -14,15 +14,28 @@ export class SongViewerComponent implements OnInit {
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
 
+  lyricsCheck: boolean = true;
+  chordCheck: boolean = true;
+
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, 
+    private songsService: SongsService, 
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef) {
+    
+  }
+
+  ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let id = +params.get('id');
       let title = params.get('title');
 
       if (id > 0) {
-        this.song = new SongsService().getSongById(id);
+        this.songsService.getSongById(id)
+          .subscribe(response => {
+            this.song = response.json();
+          });
       }
       else {
         // TODO: Prevent this case
@@ -31,22 +44,38 @@ export class SongViewerComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  onLyricsCheck($event){
+    this.lyricsCheck = $event.source.checked;
+    this.renderView();
   }
 
-  viewFull($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.FULL;
+  onChordCheck($event){
+    this.chordCheck = $event.source.checked;
+    this.renderView();
   }
 
-  viewLyrics($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.LYRICS;
+  renderView(){
+    if (this.lyricsCheck == this.chordCheck){
+      if (this.lyricsCheck)
+        this.songComponent.view = ViewMode.FULL;
+      else
+        this.songComponent.view = ViewMode.NONE;
+    }
+    else if (this.lyricsCheck){
+      this.songComponent.view = ViewMode.LYRICS;
+    }
+    else{
+      this.songComponent.view = ViewMode.CHORD;
+    }
+
+    console.log({lyrics: this.lyricsCheck, chord: this.chordCheck});
   }
 
-  viewChord($event) {
-    $event.preventDefault();
-    this.songComponent.view = ViewMode.CHORD;
+  deleteSong(){
+    this.songsService.deleteSong(this.song.id)
+      .subscribe(response =>{
+        this.router.navigate(['/songs']);
+      });
   }
 
 }

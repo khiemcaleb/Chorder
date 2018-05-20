@@ -18,6 +18,7 @@ export class CellComponent {
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
   @Output() down = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -44,18 +45,22 @@ export class CellComponent {
   }
 
   pressLeftArrow(){ // on chord press left arrow
-    this.left.emit(this)
+    this.left.emit(this);
   }
   
   onChordTab() {
     this.tab.emit(this);
   }
 
-  pressRightArrow(){
+  pressRightArrow(){ // on chord press right arrow
     this.right.emit(this);
   }
 
   pressDownArrow(){
     this.down.emit(this.index);
+  }
+
+  onCellChange($event){
+    this.change.emit($event);
   }
 }

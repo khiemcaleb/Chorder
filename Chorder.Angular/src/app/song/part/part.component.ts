@@ -2,7 +2,6 @@ import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter
 import { Part } from '../models/part';
 import { LineComponent } from '../line/line.component';
 import { SongMode, ViewMode } from '../models/song';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-part',
@@ -21,6 +20,7 @@ export class PartComponent {
   @Output() remove = new EventEmitter();
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -43,6 +43,10 @@ export class PartComponent {
       if (!this.isFocus)
         this.isFocus = true;
     }
+  }
+
+  onChange($event){
+    this.change.emit($event);
   }
 
   onLineTab(lineComponent: LineComponent) {
@@ -72,8 +76,9 @@ export class PartComponent {
     }
   }
 
-  removePart(){
+  removePart($event){
     this.remove.emit(this);
+    this.change.emit($event);
   }
 
   pressLeftArrow(lineComponent: LineComponent){

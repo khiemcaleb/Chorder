@@ -16,47 +16,71 @@ export class SongEditorComponent implements OnInit {
 
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private songsService: SongsService) { }
+
+  ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let id = +params.get('id');
       let title = params.get('title');
 
       if (id > 0) {
-        this.song = new SongsService().getSongById(id);
+        this.songsService.getSongById(id)
+          .subscribe(response => {
+            this.song = response.json();
+          });
       }
       else {
         this.song = {
-          title: "(No title)",
+          id: 0,
+          title: "Your song title",
           key: "C#",
           parts: [{
             lines: [],
             lyrics: "",
             name: "Verse"
           }],
-          artist: "Unknown",
-          author: "Unknown",
+          artist: "",
+          author: "",
           year: 2018
         }
       }
     });
   }
 
-  ngOnInit() {
+  onSongChange($event) {
+    if (this.song.id == 0) {
+      this.songsService.createSong(this.song)
+        .subscribe(response => {
+          this.song.id = response.json().id;
+        });
+    }
+    else {
+      this.songsService.updateSong(this.song)
+        .subscribe(response => {
+          console.log(response);
+        });
+    }
+    $event.stopPropagation();
   }
 
-  editLyrics($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.LYRICS;
-  }
+  onStepSelect($event) {
+    console.log($event);
+    switch ($event.selectedIndex) {
+      case 0:
+        this.songComponent.view = ViewMode.LYRICS;
+        break;
 
-  editFull($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.FULL;
-  }
+      case 1:
+        this.songComponent.view = ViewMode.FULL;
+        break;
 
-  editInfo($event = null) {
-    if ($event) $event.preventDefault();
-    this.songComponent.view = ViewMode.INFO;
+      case 2:
+        this.songComponent.view = ViewMode.INFO;
+        break;
+
+      default:
+        break;
+    }
   }
 
 }

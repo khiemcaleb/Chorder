@@ -1,2 +1,5 @@
 .vscode/launch.json
 .vscode/tasks.json
+Chorder.Api/.vscode/
+Chorder.Api/bin/
+Chorder.Api/obj/

@@ -1,0 +1,18 @@
+<div *ngIf="isEditing && mode == SongMode.EDIT; then headerEditor else headerReader"></div>
+<ng-template #headerEditor>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Key" [(ngModel)]="song.key" [appFocus]="true">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Title" [(ngModel)]="song.title" (blur)="onBlur($event)">
+  </mat-form-field>
+
+</ng-template>
+<ng-template #headerReader>
+  <h2 [ngClass]="{
+    'editable': mode == SongMode.EDIT && !isEditing,
+    'readonly': mode == SongMode.VIEW }">
+    <span [matBadge]="song.key" matBadgeOverlap="false" (click)="onHeaderClick($event)">{{song.title}}</span>
+  </h2>
+</ng-template>

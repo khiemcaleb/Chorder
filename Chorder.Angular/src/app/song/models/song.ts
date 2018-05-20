@@ -1,6 +1,7 @@
 import { Part } from "./part";
 
 export class Song {
+  id: number;
   key: string;
   title: string;
   parts: Part[];
@@ -18,5 +19,6 @@ export enum ViewMode {
   CHORD = "view-chord",
   LYRICS = "view-lyrics",
   FULL = "view-full",
-  INFO = "view-info"
+  INFO = "view-info",
+  NONE = "view-none"
 }
