@@ -21,6 +21,7 @@ export class LineComponent {
   @Output() tab = new EventEmitter();
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
+  @Output() down = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
@@ -36,6 +37,11 @@ export class LineComponent {
       // next line
       this.right.emit(this);
     }  
+  }
+
+  pressDowntArrow(cellComponent: CellComponent){
+    var array = [this,cellComponent];
+    this.down.emit(this);  
   }
 
   pressLeftArrow(cellComponent: CellComponent){
@@ -59,5 +65,7 @@ export class LineComponent {
       // next line
       this.tab.emit(this);
     }
+
+   
   }
 }
