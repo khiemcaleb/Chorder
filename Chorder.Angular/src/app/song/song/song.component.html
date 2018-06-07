@@ -4,8 +4,17 @@
 
     <ng-content select=".song-view-mode"></ng-content>
     <div *ngIf="view != ViewMode.INFO; else songInfo">
-        <app-part *ngFor="let part of song.parts;index as i" [part]="part" [mode]="mode" [view]="view" [index]="i" (tab)="onPartTab($event)"
-            (remove)="removePart($event)" (change)="onChange($event)" (left)=pressArrowLeft($event) (right)=pressArrowRight($event)>
+        <app-part *ngFor="let part of song.parts;index as i" 
+            [part]="part" 
+            [mode]="mode" 
+            [view]="view" 
+            [index]="i" 
+            (tab)="onPartTab($event)"
+            (remove)="removePart($event)" 
+            (change)="onChange($event)" 
+            (left)="pressArrowLeft($event)" 
+            (right)="pressArrowRight($event)"
+            (down)= "pressArrowDown($event)">
         </app-part>
 
         <button mat-raised-button color="primary" *ngIf="mode == SongMode.EDIT && view == ViewMode.LYRICS" (click)="addPart()">Add a part</button>

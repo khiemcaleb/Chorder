@@ -30,19 +30,17 @@ export class LineComponent {
   pressRightArrow(cellComponent: CellComponent){
     if (cellComponent.index < this.cellComponents.length - 1) {
       var nextCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index + 1];
-      nextCellComponent.isFocus = true;
       nextCellComponent.isEditing = true;
       cellComponent.isEditing = false;
-      cellComponent.isFocus = false;
     } else if (cellComponent.index == this.cellComponents.length - 1) {
       // next line
       this.right.emit(this);
     }  
   }
 
-  pressDowntArrow(cellComponent: CellComponent){
-    var array = [this,cellComponent];
-    this.down.emit(this);  
+  pressDowntArrow(indexCell){
+    var array = [indexCell,this.index];
+    this.down.emit(array);  
   }
 
   pressLeftArrow(cellComponent: CellComponent){
@@ -50,6 +48,7 @@ export class LineComponent {
       var previousCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index - 1]
         cellComponent.isFocus = false;
         previousCellComponent.isEditing = true;
+        previousCellComponent.isFocus = true;
     }
     else if (cellComponent.index == 0){
       //previous line

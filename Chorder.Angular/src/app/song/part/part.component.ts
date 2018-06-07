@@ -2,6 +2,7 @@ import { Component, OnInit, Input, QueryList, ViewChildren, Output, EventEmitter
 import { Part } from '../models/part';
 import { LineComponent } from '../line/line.component';
 import { SongMode, ViewMode } from '../models/song';
+import { concat } from 'rxjs/internal/observable/concat';
 
 @Component({
   selector: 'app-part',
@@ -21,6 +22,7 @@ export class PartComponent {
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
   @Output() change = new EventEmitter();
+  @Output() down = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -45,7 +47,7 @@ export class PartComponent {
     }
   }
 
-  onChange($event){
+  onChange($event) {
     this.change.emit($event);
   }
 
@@ -61,14 +63,12 @@ export class PartComponent {
     }
   }
 
-  pressRightArrow(lineComponent: LineComponent){
+  pressRightArrow(lineComponent: LineComponent) {
     if (lineComponent.index < this.lineComponents.length - 1) {
       var nextLineComponent = this.lineComponents.toArray()[lineComponent.index + 1];
       var firstCell = nextLineComponent.cellComponents.first;// first cell of next line
       var lastCell = lineComponent.cellComponents.last;// last cell of now line
-      lastCell.isFocus = false;
       lastCell.isEditing = false;
-      firstCell.isFocus = true;
       firstCell.isEditing = true;
     }
     else if (lineComponent.index == this.lineComponents.length - 1) {
@@ -76,28 +76,48 @@ export class PartComponent {
     }
   }
 
-  removePart($event){
+  removePart($event) {
     this.remove.emit(this);
     this.change.emit($event);
   }
 
-  pressLeftArrow(lineComponent: LineComponent){
-    if (lineComponent.index > 0){
+  pressLeftArrow(lineComponent: LineComponent) {
+    if (lineComponent.index > 0) {
       var previousLineComponent = this.lineComponents.toArray()[lineComponent.index - 1];
       var lastCell = previousLineComponent.cellComponents.last; // last cell of privious line
       var firstCell = lineComponent.cellComponents.first; // first cell of now line
       firstCell.isFocus = false;
       lastCell.isEditing = true;
     }
-    else if (lineComponent.index == 0){
+    else if (lineComponent.index == 0) {
       this.left.emit(this);
     }
   }
 
-  pressDownArrow(arrayIndex)
+  pressDownArrow(arrayIndex) // arrayIndex[0] is index cell, arrayIndex[1] is index line
   {
-    console.log(1);
+    if (arrayIndex[1] < this.lineComponents.length - 1) {
+      var nowLine = this.lineComponents.toArray()[arrayIndex[1]]
+      var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
+      var nextLine = this.lineComponents.toArray()[arrayIndex[1] + 1];
+
+      if (arrayIndex[0] > nextLine.cellComponents.length - 1) {
+        var nextCell = nextLine.cellComponents.last;
+        nowCell.isEditing = false;
+        nextCell.isEditing = true;
+      }
+      else if (arrayIndex[0] <= nextLine.cellComponents.length - 1) {
+        var nextCell = nextLine.cellComponents.toArray()[arrayIndex[0]];
+        nowCell.isEditing = false;
+        nextCell.isEditing = true;
+      }
+    }
+    else if (arrayIndex[1] == this.lineComponents.length - 1) {
+      arrayIndex[2] = this.index;
+      this.down.emit(arrayIndex);
+    }
+
   }
 
-  
+
 }

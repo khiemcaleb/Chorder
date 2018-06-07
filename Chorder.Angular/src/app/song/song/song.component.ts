@@ -29,35 +29,53 @@ export class SongComponent {
     }
   }
 
-  onChange($event){
+  onChange($event) {
     this.change.emit($event);
   }
 
-  removePart(partComponent: PartComponent){
-    if(this.song.parts.length > 1)
-      this.song.parts.splice(partComponent.index,1);
+  removePart(partComponent: PartComponent) {
+    if (this.song.parts.length > 1)
+      this.song.parts.splice(partComponent.index, 1);
   }
 
-  pressArrowRight(partComponent: PartComponent){
+  pressArrowRight(partComponent: PartComponent) {
     if (partComponent.index < this.partComponents.length - 1) {
       var nextPartComponent = this.partComponents.toArray()[partComponent.index + 1];
       var firstCell = nextPartComponent.lineComponents.first.cellComponents.first;// first cell of next part
       var lastCell = partComponent.lineComponents.last.cellComponents.last;//last cell of now part
-      lastCell.isFocus = false;
       lastCell.isEditing = false;
-      firstCell.isFocus = true;
       firstCell.isEditing = true;
     }
   }
 
-  pressArrowLeft(partComponent: PartComponent){
-    if(partComponent.index > 0){
-      var previouspart = this.partComponents.toArray()[partComponent.index - 1]
+  pressArrowLeft(partComponent: PartComponent) {
+    if (partComponent.index > 0) {
+      var previouspart = this.partComponents.toArray()[partComponent.index - 1];
       var lastCell = previouspart.lineComponents.last.cellComponents.last; // last cell of previous part 
       var nowCell = partComponent.lineComponents.last.cellComponents.last;
       nowCell.isFocus = false;
       lastCell.isEditing = true;
       lastCell.isFocus = true;
+    }
+  }
+  pressArrowDown(arrayIndex) {
+    if (arrayIndex[2] < this.partComponents.length - 1){
+        var nextPart = this.partComponents.toArray()[arrayIndex[2] + 1];
+        var nextLine = nextPart.lineComponents.first;
+        var nowPart = this.partComponents.toArray()[arrayIndex[2]];
+        var nowLine = nowPart.lineComponents.last;
+        var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
+
+        if (arrayIndex[0] > nextLine.cellComponents.length - 1) {
+          var nextCell = nextLine.cellComponents.last;
+          nowCell.isEditing = false;
+          nextCell.isEditing = true;
+        }
+        else if (arrayIndex[0] <= nextLine.cellComponents.length - 1) {
+          var nextCell = nextLine.cellComponents.toArray()[arrayIndex[0]];
+          nowCell.isEditing = false;
+          nextCell.isEditing = true;
+        }
     }
   }
 
@@ -66,6 +84,6 @@ export class SongComponent {
       lines: [],
       lyrics: '', // TODO: Need null validation
       name: 'Part name'
-    });  
+    });
   }
 }
