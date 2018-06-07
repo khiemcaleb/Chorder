@@ -18,6 +18,7 @@ export class CellComponent {
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
   @Output() down = new EventEmitter();
+  @Output() up = new EventEmitter();
   @Output() change = new EventEmitter();
 
   isEditing: boolean = false;
@@ -58,6 +59,10 @@ export class CellComponent {
 
   pressDownArrow(){
     this.down.emit(this.index);
+  }
+
+  pressUpArrow(){
+    this.up.emit(this.index);
   }
 
   onCellChange($event){

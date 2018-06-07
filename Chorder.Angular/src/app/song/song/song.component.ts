@@ -59,24 +59,45 @@ export class SongComponent {
     }
   }
   pressArrowDown(arrayIndex) {
-    if (arrayIndex[2] < this.partComponents.length - 1){
-        var nextPart = this.partComponents.toArray()[arrayIndex[2] + 1];
-        var nextLine = nextPart.lineComponents.first;
-        var nowPart = this.partComponents.toArray()[arrayIndex[2]];
-        var nowLine = nowPart.lineComponents.last;
-        var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
+    if (arrayIndex[2] < this.partComponents.length - 1) {
+      var nextPart = this.partComponents.toArray()[arrayIndex[2] + 1];
+      var nextLine = nextPart.lineComponents.first;
+      var nowPart = this.partComponents.toArray()[arrayIndex[2]];
+      var nowLine = nowPart.lineComponents.last;
+      var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
 
-        if (arrayIndex[0] > nextLine.cellComponents.length - 1) {
-          var nextCell = nextLine.cellComponents.last;
-          nowCell.isEditing = false;
-          nextCell.isEditing = true;
-        }
-        else if (arrayIndex[0] <= nextLine.cellComponents.length - 1) {
-          var nextCell = nextLine.cellComponents.toArray()[arrayIndex[0]];
-          nowCell.isEditing = false;
-          nextCell.isEditing = true;
-        }
+      if (arrayIndex[0] > nextLine.cellComponents.length - 1) {
+        var nextCell = nextLine.cellComponents.last;
+        nowCell.isEditing = false;
+        nextCell.isEditing = true;
+      }
+      else if (arrayIndex[0] <= nextLine.cellComponents.length - 1) {
+        var nextCell = nextLine.cellComponents.toArray()[arrayIndex[0]];
+        nowCell.isEditing = false;
+        nextCell.isEditing = true;
+      }
     }
+  }
+
+  pressArrowUp(arrayIndex) {
+    if (arrayIndex[2] > 0) {
+      var abovePart = this.partComponents.toArray()[arrayIndex[2] - 1];
+      var aboveLine = abovePart.lineComponents.last;
+      var nowPart = this.partComponents.toArray()[arrayIndex[2]];
+      var nowLine = nowPart.lineComponents.last;
+      var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
+
+      if (arrayIndex[0] > aboveLine.cellComponents.length - 1) {
+        var aboveCell = aboveLine.cellComponents.last;
+        nowCell.isEditing = false;
+        aboveCell.isEditing = true;
+      }
+      else if (arrayIndex[0] <= aboveLine.cellComponents.length - 1) {
+        var aboveCell = aboveLine.cellComponents.toArray()[arrayIndex[0]];
+        nowCell.isEditing = false;
+        aboveCell.isEditing = true;
+      }
+    } 
   }
 
   addPart() {

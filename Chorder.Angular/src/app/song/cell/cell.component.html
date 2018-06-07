@@ -11,7 +11,8 @@
       (keydown.tab)="onChordTab()" 
       [appFocus]="isFocus"
       (keydown.ArrowRight)="pressRightArrow()"
-      (keydown.ArrowDown)="pressDownArrow()">
+      (keydown.ArrowDown)="pressDownArrow()"
+      (keydown.ArrowUp) = "pressUpArrow()">
     </ng-template>
 
     <ng-template #chordReader>

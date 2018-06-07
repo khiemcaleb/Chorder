@@ -23,6 +23,7 @@ export class PartComponent {
   @Output() right = new EventEmitter();
   @Output() change = new EventEmitter();
   @Output() down = new EventEmitter();
+  @Output() up = new EventEmitter();
 
   isEditing: boolean = false;
   isFocus: boolean = true;
@@ -94,8 +95,7 @@ export class PartComponent {
     }
   }
 
-  pressDownArrow(arrayIndex) // arrayIndex[0] is index cell, arrayIndex[1] is index line
-  {
+  pressDownArrow(arrayIndex){ // arrayIndex[0] is index cell, arrayIndex[1] is index line
     if (arrayIndex[1] < this.lineComponents.length - 1) {
       var nowLine = this.lineComponents.toArray()[arrayIndex[1]]
       var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
@@ -116,8 +116,27 @@ export class PartComponent {
       arrayIndex[2] = this.index;
       this.down.emit(arrayIndex);
     }
-
   }
 
+  pressUpArrow(arrayIndex) {
+    if (arrayIndex[1] > 0) {
+      var nowLine = this.lineComponents.toArray()[arrayIndex[1]]
+      var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];
+      var aboveLine = this.lineComponents.toArray()[arrayIndex[1] - 1];
+
+      if (arrayIndex[0] > aboveLine.cellComponents.length - 1) {
+        var aboveCell = aboveLine.cellComponents.last;
+        nowCell.isEditing = false;
+        aboveCell.isEditing = true;
+      } else if (arrayIndex[0] <= aboveLine.cellComponents.length - 1) {
+        var aboveCell = aboveLine.cellComponents.toArray()[arrayIndex[0]];
+        nowCell.isEditing = false;
+        aboveCell.isEditing = true;
+      }
+    } else if (arrayIndex[1] == 0) {
+      arrayIndex[2] = this.index;
+      this.up.emit(arrayIndex);
+    }
+  }
 
 }

@@ -22,6 +22,7 @@ export class LineComponent {
   @Output() left = new EventEmitter();
   @Output() right = new EventEmitter();
   @Output() down = new EventEmitter();
+  @Output() up = new EventEmitter();
   @Output() change = new EventEmitter();
 
   SongMode: typeof SongMode = SongMode;
@@ -38,9 +39,14 @@ export class LineComponent {
     }  
   }
 
-  pressDowntArrow(indexCell){
+  pressDownArrow(indexCell){
     var array = [indexCell,this.index];
     this.down.emit(array);  
+  }
+
+  pressUpArrow(indexCell){
+    var array = [indexCell,this.index];
+    this.up.emit(array);  
   }
 
   pressLeftArrow(cellComponent: CellComponent){
