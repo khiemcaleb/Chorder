@@ -95,7 +95,7 @@ export class PartComponent {
     }
   }
 
-  pressDownArrow(arrayIndex){ // arrayIndex[0] is index cell, arrayIndex[1] is index line
+  pressDownArrow(arrayIndex) { // arrayIndex[0] is index cell, arrayIndex[1] is index line
     if (arrayIndex[1] < this.lineComponents.length - 1) {
       var nowLine = this.lineComponents.toArray()[arrayIndex[1]]
       var nowCell = nowLine.cellComponents.toArray()[arrayIndex[0]];

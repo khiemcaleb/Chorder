@@ -8,3 +8,4 @@ C:\Repos\chorder\Chorder.Api\obj\Debug\netcoreapp2.0\Chorder.Api.AssemblyInfoInp
 C:\Repos\chorder\Chorder.Api\obj\Debug\netcoreapp2.0\Chorder.Api.AssemblyInfo.cs
 C:\Repos\chorder\Chorder.Api\obj\Debug\netcoreapp2.0\Chorder.Api.dll
 C:\Repos\chorder\Chorder.Api\obj\Debug\netcoreapp2.0\Chorder.Api.pdb
+C:\Repos\Chorder\Chorder.Api\obj\Debug\netcoreapp2.0\Chorder.Api.csprojResolveAssemblyReference.cache

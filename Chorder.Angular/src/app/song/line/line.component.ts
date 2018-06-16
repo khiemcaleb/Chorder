@@ -28,7 +28,7 @@ export class LineComponent {
   SongMode: typeof SongMode = SongMode;
   ViewMode: typeof ViewMode = ViewMode;
 
-  pressRightArrow(cellComponent: CellComponent){
+  pressRightArrow(cellComponent: CellComponent) {
     if (cellComponent.index < this.cellComponents.length - 1) {
       var nextCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index + 1];
       nextCellComponent.isEditing = true;
@@ -36,29 +36,29 @@ export class LineComponent {
     } else if (cellComponent.index == this.cellComponents.length - 1) {
       // next line
       this.right.emit(this);
-    }  
-  }
-
-  pressDownArrow(indexCell){
-    var array = [indexCell,this.index];
-    this.down.emit(array);  
-  }
-
-  pressUpArrow(indexCell){
-    var array = [indexCell,this.index];
-    this.up.emit(array);  
-  }
-
-  pressLeftArrow(cellComponent: CellComponent){
-    if (cellComponent.index > 0){
-      var previousCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index - 1]
-        cellComponent.isFocus = false;
-        previousCellComponent.isEditing = true;
-        previousCellComponent.isFocus = true;
     }
-    else if (cellComponent.index == 0){
+  }
+
+  pressDownArrow(indexCell) {
+    var array = [indexCell, this.index];
+    this.down.emit(array);
+  }
+
+  pressUpArrow(indexCell) {
+    var array = [indexCell, this.index];
+    this.up.emit(array);
+  }
+
+  pressLeftArrow(cellComponent: CellComponent) {
+    if (cellComponent.index > 0) {
+      var previousCellComponent: CellComponent = this.cellComponents.toArray()[cellComponent.index - 1]
+      cellComponent.isFocus = false;
+      previousCellComponent.isEditing = true;
+      previousCellComponent.isFocus = true;
+    }
+    else if (cellComponent.index == 0) {
       //previous line
-      this.left.emit(this); 
+      this.left.emit(this);
     }
   }
 
@@ -72,10 +72,10 @@ export class LineComponent {
       this.tab.emit(this);
     }
 
-   
+
   }
 
-  onCellChange($event){
+  onCellChange($event) {
     this.change.emit($event);
   }
 }
