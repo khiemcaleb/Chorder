@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Song } from './models/song';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SongsService {
-  private url = "http://localhost:5000/api/songs";
+  private url = environment.chorderApiUrl + "api/songs";
 
   constructor(private http: Http = null) {
 
