@@ -1,0 +1,11 @@
+C:\Repos\Chorder\Chorder.Host\bin\Debug\netcoreapp2.0\Chorder.Host.deps.json
+C:\Repos\Chorder\Chorder.Host\bin\Debug\netcoreapp2.0\Chorder.Host.runtimeconfig.json
+C:\Repos\Chorder\Chorder.Host\bin\Debug\netcoreapp2.0\Chorder.Host.runtimeconfig.dev.json
+C:\Repos\Chorder\Chorder.Host\bin\Debug\netcoreapp2.0\Chorder.Host.dll
+C:\Repos\Chorder\Chorder.Host\bin\Debug\netcoreapp2.0\Chorder.Host.pdb
+C:\Repos\Chorder\Chorder.Host\obj\Debug\netcoreapp2.0\Chorder.Host.csprojResolveAssemblyReference.cache
+C:\Repos\Chorder\Chorder.Host\obj\Debug\netcoreapp2.0\Chorder.Host.csproj.CoreCompileInputs.cache
+C:\Repos\Chorder\Chorder.Host\obj\Debug\netcoreapp2.0\Chorder.Host.AssemblyInfoInputs.cache
+C:\Repos\Chorder\Chorder.Host\obj\Debug\netcoreapp2.0\Chorder.Host.AssemblyInfo.cs
+C:\Repos\Chorder\Chorder.Host\obj\Debug\netcoreapp2.0\Chorder.Host.dll
+C:\Repos\Chorder\Chorder.Host\obj\Debug\netcoreapp2.0\Chorder.Host.pdb
