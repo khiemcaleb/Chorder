@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ufabngtest-deployment
+  namespace: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ufabngtest
+    spec:
+      containers:
+      - name: ufabtest
+        image: khiemcaleb/chorder.angular:#{ImageVersion}#
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Staging
+---        
+apiVersion: v1
+kind: Service
+metadata:
+  name: ufabngtest-service
+  namespace: test
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: ufabngtest

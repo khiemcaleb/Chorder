@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    chorderApiUrl: "stagingUrl"
+    chorderApiUrl: "http://40.121.8.117/"
   };
   
