@@ -11,7 +11,7 @@ spec:
         app: ufabngtest
     spec:
       containers:
-      - name: ufabtest
+      - name: ufabngtest
         image: khiemcaleb/chorder.angular:#{ImageVersion}#
         ports:
         - containerPort: 80
