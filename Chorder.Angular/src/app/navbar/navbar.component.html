@@ -1,5 +1,18 @@
+
 <mat-toolbar color="primary" class="mat-elevation-z4">
   <button mat-button routerLink="/">Chorder</button>
   <button mat-button routerLink="/songs">Songs</button>
   <button mat-button routerLink="/lists">Lists</button>
+  <div>
+    <i class="material-icons" [@move]='move' (click)="animationMove()" id="search-icon">
+      search
+    </i>
+  </div>
+  <div class="searchBox">
+    <form>
+      <input id="searchBox" [@move]='move' [@focus]='focus' type="text" name="search" placeholder="">
+    </form>
+  </div>
 </mat-toolbar>
+
+
