@@ -17,7 +17,7 @@ import { Animation } from '@angular/animations/browser/src/dsl/animation';
 export class NavbarComponent implements OnInit {
   @ViewChild('searchBox') inputEl:ElementRef;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
@@ -28,7 +28,10 @@ export class NavbarComponent implements OnInit {
   animationMove(  ) {
     this.move = this.move === 'right' ? 'left':'right';
     if (this.move == 'left')
+    {
       this.focus = 'focus';
+      this.inputEl.nativeElement.focus();
+    }
     if (this.move == 'right')
       this.focus = 'unfocus';     
   }

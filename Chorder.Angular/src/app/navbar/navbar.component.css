@@ -1,34 +1,26 @@
 
 #search-icon{
   position: relative;
-  padding: 5px;
-  transform: translateY(3px);
-  -webkit-animation-duration: 4s linear;
-  animation-duration: 4s linear;
+  padding: 6px;
+  left:1000px;
 }
 
 #search-icon:hover{
   background-color: #37479f;
 }
 
-div{
-  position: relative;
-  left:1000px;
-}
-
-div.searchBox{
-  transform: translateY(-3px);
-}
-
 #searchBox {
+  outline: none;
   position: relative;
   width: 0px;
   height:32px;
+  left:1000px;
+  color: white;
   box-sizing: border-box;
   border: solid white;
-  border-width: 0px 0px 0px 0px;
+  border-style: none none solid none;
   font-size: 16px;
-  background-color: white;
+  background-color: #3f51b5;
   background-position: 10px 10px; 
   background-repeat: no-repeat;
   -webkit-transition: width 0.4s ease-in-out;

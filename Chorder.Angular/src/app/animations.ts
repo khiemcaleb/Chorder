@@ -3,7 +3,6 @@ import { state } from '@angular/animations';
 import { transition } from '@angular/animations';
 import { style, animate } from '@angular/animations';
 
-
 export let move = trigger('move', [
     state("left", style({
         transform: 'translateX(-150px)'
@@ -11,10 +10,7 @@ export let move = trigger('move', [
     state("right", style({
         transform: 'translateX(0)'
     })),
-    transition('right => left', [
-        animate(500)
-    ]),
-    transition('left => right', [
+    transition('right <=> left', [
         animate(500)
     ])
 ])
@@ -23,11 +19,9 @@ export let Animationfocus = trigger('focus', [
     state("focus",style({
         width: '100%',
         border: 'solid white',
+        borderStyle: 'none none solid none'
     })),
-    transition('* => void', [
-        animate(500)
-    ]),
-    transition('void => *', [
+    transition('* <=> void', [
         animate(500)
     ])
 ])
