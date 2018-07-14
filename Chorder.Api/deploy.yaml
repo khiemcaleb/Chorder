@@ -12,12 +12,12 @@ spec:
     spec:
       containers:
       - name: ufabtest
-        image: khiemcaleb/chorder.api:#{ImageVersion}#
+        image: khiemcaleb/chorder.api:#{IMAGE_VERSION}#
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: Staging
+          value: #{ASPNETCORE_ENVIRONMENT}#
 ---        
 apiVersion: v1
 kind: Service
