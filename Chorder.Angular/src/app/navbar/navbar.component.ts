@@ -4,6 +4,7 @@ import { ElementRef } from '@angular/core';
 import { ViewChildren } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { Animation } from '@angular/animations/browser/src/dsl/animation';
+import { platform } from 'process';
 
 @Component({
   selector: 'app-navbar',
@@ -17,22 +18,13 @@ import { Animation } from '@angular/animations/browser/src/dsl/animation';
 export class NavbarComponent implements OnInit {
   @ViewChild('searchBox') inputEl:ElementRef;
 
-  constructor() {}
+  constructor() {
+  }
+
+  screenMobi: boolean;
 
   ngOnInit() {
+    this.screenMobi = !(window.screen.width < 599);
   }
-
-  move:string = 'right';
-  focus:string = 'unfocus';
-
-  animationMove(  ) {
-    this.move = this.move === 'right' ? 'left':'right';
-    if (this.move == 'left')
-    {
-      this.focus = 'focus';
-      this.inputEl.nativeElement.focus();
-    }
-    if (this.move == 'right')
-      this.focus = 'unfocus';     
-  }
+ 
 }

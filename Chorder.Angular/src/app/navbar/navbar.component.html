@@ -1,13 +1,37 @@
-<mat-toolbar color="primary" class="mat-elevation-z4">
-  <button mat-button routerLink="/">Chorder</button>
-  <button mat-button routerLink="/songs">Songs</button>
-  <button mat-button routerLink="/lists">Lists</button>
+<div *ngIf="screenMobi; else NavforMobi">
+  <mat-toolbar color="primary" class="mat-elevation-z4">
+    <button mat-button routerLink="/">Chorder</button>
+    <button mat-button routerLink="/songs">Songs</button>
+    <button mat-button routerLink="/lists">Lists</button>
+    <form class="searchBox">
+      <label for="search">
+        <i id="icon" class="material-icons">
+          search
+        </i>
+      </label>
+      <input id="search" type="text" name="input" />
+    </form>
+  </mat-toolbar>
+</div>
 
-  <i class="material-icons" [@move]='move' (click)="animationMove()" id="search-icon">
-    search
-  </i>
+<ng-template #NavforMobi>
+  <mat-toolbar color="primary" class="mat-elevation-z4">
+    <mat-toolbar-row>
+      <button mat-button routerLink="/">Chorder</button>
+      <button mat-button routerLink="/songs">Songs</button>
+      <button mat-button routerLink="/lists">Lists</button>
+    </mat-toolbar-row>
 
-  <form>
-    <input id="searchBox" [@move]='move' [@focus]='focus' type="text" name="search" placeholder="" #searchBox>
-  </form>
-</mat-toolbar>
+    <mat-toolbar-row>
+      <form class="searchBox" style="left: 30px;">
+        <label for="search">
+          <i id="icon" class="material-icons">
+            search
+          </i>
+        </label>
+        <input id="search" type="text" name="input" />
+      </form>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+</ng-template>
