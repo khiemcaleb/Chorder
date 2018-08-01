@@ -1,3 +1,5 @@
+<button mat-button routerLink="../" color="primary">View</button>
+
 <app-song [song]="song" [mode]="SongMode.EDIT" [view]="ViewMode.LYRICS" (change)="onSongChange($event)">
     <div class="song-view-mode">
         <mat-horizontal-stepper (selectionChange)="onStepSelect($event)">

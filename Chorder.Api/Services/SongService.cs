@@ -50,7 +50,7 @@ namespace Chorder.Api.Services
 
         public IEnumerable<SongDto> GetSongs()
         {
-            var songs = _uow.Songs.Get();
+            var songs = _uow.Songs.Get(100);
             return _mapper.Map<IEnumerable<SongDto>>(songs);
         }
 
