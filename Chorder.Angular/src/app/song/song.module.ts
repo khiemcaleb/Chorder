@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MatProgressSpinnerModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatButtonToggleModule, MatStepperModule } from '@angular/material';
+import { MatProgressSpinnerModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatButtonToggleModule, MatStepperModule, MatCardTitle, MatCardModule } from '@angular/material';
 import { MatBadgeModule } from '@angular/material/badge';
 
 import { RouterModule } from '@angular/router';
@@ -54,7 +54,8 @@ import { SongsService } from './songs.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,
-    MatStepperModule
+    MatStepperModule,
+    MatCardModule
   ],
   providers: [
     SongsService

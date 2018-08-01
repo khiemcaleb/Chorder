@@ -41,7 +41,8 @@ export class SongEditorComponent implements OnInit {
           }],
           artist: "",
           author: "",
-          year: 2018
+          year: 2018,
+          firstPartLyrics: ""
         }
       }
     });

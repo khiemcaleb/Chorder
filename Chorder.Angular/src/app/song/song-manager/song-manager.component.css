@@ -1,0 +1,13 @@
+.song-card {
+    max-width: 400px;
+    margin-bottom: 10px;
+  }
+  
+  .song-card-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+li {
+    list-style: none;
+}

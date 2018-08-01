@@ -16,6 +16,7 @@ export class SongManagerComponent implements OnInit {
     this.songsService.getSongs()
       .subscribe(response => {
         this.songs = response.json();
+        console.log(this.songs[0]);
       });
   }
 }
