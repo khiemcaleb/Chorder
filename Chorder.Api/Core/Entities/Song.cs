@@ -20,7 +20,7 @@ namespace Chorder.Api.Core.Entities
         [StringLength(10)]
         public string Key { get; set; }
 
-        public virtual ICollection<Part> Parts { get; set; }
+        public virtual IList<Part> Parts { get; set; }
 
         [StringLength(200)]
         public string Artist { get; set; }

@@ -38,7 +38,8 @@ namespace Chorder.Api.Persistence.Repositories
             return _dbContext.Songs
                 .AsNoTracking()
                 .Skip(pageSize * (pageNo - 1))
-                .Take(pageSize);
+                .Take(pageSize)
+                .Include(s => s.Parts);
         }
 
         public void Update(Song song)
