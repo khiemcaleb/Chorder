@@ -1,4 +1,4 @@
-<button mat-button routerLink="../" color="primary">View</button>
+<button mat-button [routerLink]="['/songs', song.id, song.title]" color="primary" *ngIf="song!=null&&song.id!=0;">View</button>
 
 <app-song [song]="song" [mode]="SongMode.EDIT" [view]="ViewMode.LYRICS" (change)="onSongChange($event)">
     <div class="song-view-mode">

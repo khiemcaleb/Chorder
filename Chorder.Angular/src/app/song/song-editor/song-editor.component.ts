@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SongsService } from '../songs.service';
 import { SongComponent } from '../song/song.component';
 import { Song, SongMode, ViewMode } from '../models/song';
@@ -16,7 +16,7 @@ export class SongEditorComponent implements OnInit {
 
   @ViewChild(SongComponent) songComponent: SongComponent;
 
-  constructor(private route: ActivatedRoute, private songsService: SongsService) { }
+  constructor(private route: ActivatedRoute, private songsService: SongsService, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -42,7 +42,8 @@ export class SongEditorComponent implements OnInit {
           artist: "",
           author: "",
           year: 2018,
-          firstPartLyrics: ""
+          firstPartLyrics: "",
+          tempo: 0
         }
       }
     });
@@ -58,14 +59,12 @@ export class SongEditorComponent implements OnInit {
     else {
       this.songsService.updateSong(this.song)
         .subscribe(response => {
-          console.log(response);
         });
     }
     $event.stopPropagation();
   }
 
   onStepSelect($event) {
-    console.log($event);
     switch ($event.selectedIndex) {
       case 0:
         this.songComponent.view = ViewMode.LYRICS;
@@ -82,6 +81,10 @@ export class SongEditorComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  onClickView($event){
+    this.router.navigate(['/songs', this.song.id, this.song.title]);
   }
 
 }

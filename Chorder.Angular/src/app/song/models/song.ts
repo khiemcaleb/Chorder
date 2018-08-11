@@ -9,6 +9,7 @@ export class Song {
   author: string;
   year: number;
   firstPartLyrics: string;
+  tempo: number;
 }
 
 export enum SongMode {

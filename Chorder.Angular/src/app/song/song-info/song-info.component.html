@@ -1,4 +1,8 @@
 <mat-form-field class="example-full-width">
+  <input matInput placeholder="Tempo" id="tempo" type="number" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.tempo" (change)="onChange($event)">
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
   <input matInput placeholder="Artist" id="artist" type="text" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.artist"
     (change)="onChange($event)">
 </mat-form-field>
@@ -9,5 +13,5 @@
 </mat-form-field>
 
 <mat-form-field class="example-full-width">
-    <input matInput placeholder="Year" id="year" type="number" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.year" (change)="onChange($event)">
-  </mat-form-field>
+  <input matInput placeholder="Year" id="year" type="number" [readonly]="mode == SongMode.VIEW" [(ngModel)]="song.year" (change)="onChange($event)">
+</mat-form-field>

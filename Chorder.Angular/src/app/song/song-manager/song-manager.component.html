@@ -8,7 +8,7 @@
             <a [routerLink]="['/songs', song.id, song.title]">
               {{song.title}}
               <span class="badge badge-secondary">{{song.key}}</span>&nbsp;
-              <span class="badge badge-secondary">120</span>
+              <span class="badge badge-secondary">{{song.tempo}}</span>
             </a>
           </mat-card-title>
           <mat-card-subtitle>{{song.author}}</mat-card-subtitle>

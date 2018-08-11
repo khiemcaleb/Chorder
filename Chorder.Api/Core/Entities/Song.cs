@@ -30,6 +30,8 @@ namespace Chorder.Api.Core.Entities
         
         public int Year { get; set; }
 
+        public int Tempo { get; set; }
+
         public void Modify(SongDto dto)
         {
             Title = dto.Title;
@@ -37,6 +39,7 @@ namespace Chorder.Api.Core.Entities
             Artist = dto.Artist;
             Author = dto.Author;
             Year = dto.Year;
+            Tempo = dto.Tempo;
         }
     }
 }
