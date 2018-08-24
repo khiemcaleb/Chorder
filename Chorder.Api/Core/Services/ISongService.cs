@@ -7,7 +7,7 @@ namespace Chorder.Api.Core.Services
     {
         int CreateSong(SongDto songDto);
         SongDto GetSongById(int id);
-        IEnumerable<SongDto> GetSongs();
+        IEnumerable<SongDto> GetSongs(int skip, int take, string sort, bool desc);
         bool DeleteSongById(int id);
         bool Update(SongDto dto);
     }

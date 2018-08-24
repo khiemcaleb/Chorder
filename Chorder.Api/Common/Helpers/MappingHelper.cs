@@ -17,9 +17,7 @@ namespace Chorder.Api.Common.Helpers
         public static string StringifyLines(JArray lines)
         {
             if (lines != null)
-            {
                 return (lines as JArray).ToString(Formatting.None);
-            }
 
             return string.Empty;
         }
@@ -30,6 +28,15 @@ namespace Chorder.Api.Common.Helpers
                 return string.Empty;
 
             return song.Parts[0].Lyrics;
+        }
+
+        public static (string, bool) DeserializeOrderBy(string orderby)
+        {
+            var terms = orderby.Split('_');
+            if (terms.Length < 2)
+                throw new ArgumentException("Orderby input is invalid.");
+
+            return (terms[0], terms[1].ToUpper().Equals("DESC"));
         }
     }
 }

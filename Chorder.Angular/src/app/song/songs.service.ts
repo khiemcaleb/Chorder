@@ -11,8 +11,12 @@ export class SongsService {
 
   }
 
-  getSongs() {
-    return this.http.get(this.url);
+  getSongs(skip = 0, take = 10, orderBy = "Id_DESC") {
+    return this.http.get(this.url, {
+      params: {
+        skip, take, orderBy
+      }
+    });
   }
 
   getSongById(id: number) {
@@ -27,7 +31,7 @@ export class SongsService {
     return this.http.post(this.url, body, options);
   }
 
-  updateSong(song: Song){
+  updateSong(song: Song) {
     let body = JSON.stringify(song);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -35,7 +39,7 @@ export class SongsService {
     return this.http.put(this.url + '/' + song.id, body, options);
   }
 
-  deleteSong(id: number){
+  deleteSong(id: number) {
     return this.http.delete(this.url + '/' + id);
   }
 }

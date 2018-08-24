@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Chorder.Api.Common.Helpers;
 using Chorder.Api.Core.Dtos;
 using Chorder.Api.Core.Services;
 using Microsoft.AspNetCore.JsonPatch;
@@ -17,11 +19,12 @@ namespace Chorder.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int skip = 0, int take = 10, string orderby = "Id_DESC")
         {
-            var dtos = _songService.GetSongs();
+            var (sortFieldName, isDesc) = MappingHelper.DeserializeOrderBy(orderby);
+            var dtos = _songService.GetSongs(skip, take, sortFieldName, isDesc);
             return Ok(dtos);
-        }
+        }        
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -60,7 +63,7 @@ namespace Chorder.Api.Controllers
         {
             if (patch == null)
                 return BadRequest();
-            
+
             var dto = _songService.GetSongById(id);
             if (dto == null)
                 return NotFound();

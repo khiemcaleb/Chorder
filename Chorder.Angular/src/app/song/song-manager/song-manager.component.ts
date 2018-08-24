@@ -13,10 +13,9 @@ export class SongManagerComponent implements OnInit {
   constructor(private songsService: SongsService) { }
 
   ngOnInit() {
-    this.songsService.getSongs()
+    this.songsService.getSongs(0, 100, "Id_DESC")
       .subscribe(response => {
         this.songs = response.json();
-        console.log(this.songs[0]);
       });
   }
 }

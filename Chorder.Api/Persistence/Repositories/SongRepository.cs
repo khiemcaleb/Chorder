@@ -33,13 +33,20 @@ namespace Chorder.Api.Persistence.Repositories
                 .SingleOrDefault(s => s.Id == id);
         }
 
-        public IEnumerable<Song> Get(int pageSize = 10, int pageNo = 1)
+        public IEnumerable<Song> Get(int skip, int take, string sort, bool desc)
         {
-            return _dbContext.Songs
-                .AsNoTracking()
-                .Skip(pageSize * (pageNo - 1))
-                .Take(pageSize)
-                .Include(s => s.Parts);
+            var pi = typeof(Song).GetProperty(sort);
+
+            var orderedQuery =
+                desc ?
+                _dbContext.Songs.OrderByDescending(x => x.Id) :
+                _dbContext.Songs.OrderBy(x => x.Id);
+
+            return orderedQuery
+                .Skip(skip)
+                .Take(take)
+                .Include(s => s.Parts)
+                .AsNoTracking();
         }
 
         public void Update(Song song)

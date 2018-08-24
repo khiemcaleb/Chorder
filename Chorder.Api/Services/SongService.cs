@@ -48,9 +48,9 @@ namespace Chorder.Api.Services
             return _mapper.Map<SongDto>(song);
         }
 
-        public IEnumerable<SongDto> GetSongs()
+        public IEnumerable<SongDto> GetSongs(int skip, int take, string sort, bool desc)
         {
-            var songs = _uow.Songs.Get(100);
+            var songs = _uow.Songs.Get(skip, take, sort, desc);
             return _mapper.Map<IEnumerable<SongDto>>(songs);
         }
 
@@ -71,7 +71,7 @@ namespace Chorder.Api.Services
             foreach (var part in addedParts)
             {
                 song.Parts.Add(_mapper.Map<Part>(part));
-            }           
+            }
 
             // Update existing parts
             foreach (var part in updatedParts)
@@ -84,7 +84,7 @@ namespace Chorder.Api.Services
             _uow.Parts.Update(updatedParts);
             _uow.Parts.Delete(deleteParts);
             _uow.Complete();
-            
+
             return true;
         }
     }
